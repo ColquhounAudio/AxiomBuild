@@ -118,8 +118,8 @@ echo ' Adding Raspbian Repo Key'
 wget https://archive.raspbian.org/raspbian.public.key -O - | sudo apt-key add -
 
 # Symlinking to legacy paths
-ln -s /bin/node /usr/local/bin/node
-ln -s /bin/npm /usr/local/bin/npm
+ln -s /usr/bin/node /usr/local/bin/node
+ln -s /usr/bin/npm /usr/local/bin/npm
 
 #  echo "Installing Volumio Modules"
 #  cd /volumio
@@ -153,10 +153,10 @@ echo "Installing custom MPD depending on system architecture"
 echo "Installing MPD for armv7"
 # First we manually install a newer alsa-lib to achieve Direct DSD support
 
-#  echo "Installing MPD 20.6 with Direct DSD Support"
-#  wget http://repo.volumio.org/Volumio2/Binaries/mpd-DSD/mpd_0.20.6-1_armv7-DSD.deb
-#  dpkg -i mpd_0.20.6-1_armv7-DSD.deb
-#  rm mpd_0.20.6-1_armv7-DSD.deb
+   echo "Installing MPD 20.6 with Direct DSD Support"
+   wget https://github.com/ColquhounAudio/mpd-0.20.20-volumio/releases/download/0.20.20-1/mpd_0.20.20-1-volumio_armhf.deb
+   dpkg -i mpd_0.20.20-1-volumio_armhf.deb
+   rm mpd_0.20.20-1-volumio_armhf.deb
 
 #  echo "Adding volumio-remote-updater for armv7"
 #  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-remote-updater_1.3-armv7.deb
@@ -251,6 +251,7 @@ RECYCLER
 
 echo "Setting mpc to bind to unix socket"
 export MPD_HOST=/run/mpd/socket
+chmod g+rwx /run/mpd
 
 echo "Setting Permissions for /etc/modules"
 chmod 777 /etc/modules
