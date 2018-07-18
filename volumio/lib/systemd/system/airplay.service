@@ -1,13 +1,20 @@
 [Unit]
-Description=ShairportSync AirTunes receiver
-After=sound.target
 Requires=avahi-daemon.service
+BindsTo=avahi-daemon.service
 After=avahi-daemon.service
 
 [Service]
-ExecStart=/usr/local/bin/shairport-sync
+ExecStart=/usr/local/bin/airplayd
+ExecStartPre=/bin/sleep 10
+Type=idle
+Nice=-19
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=volumio
 User=volumio
 Group=volumio
+RestartSec=2
 
 [Install]
 WantedBy=multi-user.target

@@ -106,16 +106,16 @@ echo "Adding PI3 & PiZero W Wireless, PI WIFI Wireless dongle, ralink mt7601u & 
 apt-get install -y --only-upgrade firmware-atheros firmware-ralink firmware-realtek firmware-brcm80211
 
 # Temporary brcm firmware fix solution until we use Stretch
-wget http://repo.volumio.org/Volumio2/Firmwares/firmware-brcm80211_20161130-3%2Brpt3_all.deb
-dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
-rm firmware-brcm80211_20161130-3+rpt3_all.deb
+#wget http://repo.volumio.org/Volumio2/Firmwares/firmware-brcm80211_20161130-3%2Brpt3_all.deb
+#dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
+#rm firmware-brcm80211_20161130-3+rpt3_all.deb
 
-if [ "$KERNEL_VERSION" = "4.4.9" ]; then       # probably won't be necessary in future kernels 
-echo "Adding initial support for PiZero W wireless on 4.4.9 kernel"
-wget -P /boot/. https://github.com/Hexxeh/rpi-firmware/raw/$FIRMWARE_COMMIT/bcm2708-rpi-0-w.dtb
-echo "Adding support for dtoverlay=pi3-disable-wifi on 4.4.9 kernel"
-wget -P /boot/overlays/. https://github.com/Hexxeh/rpi-firmware/raw/$FIRMWARE_COMMIT/overlays/pi3-disable-wifi.dtbo
-fi
+#if [ "$KERNEL_VERSION" = "4.4.9" ]; then       # probably won't be necessary in future kernels 
+#echo "Adding initial support for PiZero W wireless on 4.4.9 kernel"
+#wget -P /boot/. https://github.com/Hexxeh/rpi-firmware/raw/$FIRMWARE_COMMIT/bcm2708-rpi-0-w.dtb
+#echo "Adding support for dtoverlay=pi3-disable-wifi on 4.4.9 kernel"
+#wget -P /boot/overlays/. https://github.com/Hexxeh/rpi-firmware/raw/$FIRMWARE_COMMIT/overlays/pi3-disable-wifi.dtbo
+#fi
 
 #echo "Adding raspi-config"
 #wget -P /raspi http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20151019_all.deb
@@ -136,7 +136,7 @@ echo "Writing config.txt file"
 echo "initramfs volumio.initrd
 gpu_mem=16
 max_usb_current=1
-dtparam=audio=on
+# dtparam=audio=on
 audio_pwm_mode=2
 dtparam=i2c_arm=on
 disable_splash=1
@@ -251,49 +251,6 @@ cd /
 rm -rf ${PATCH}
 fi
 rm /patch
-
-
-if [ "$PATCH" = "volumio" ]; then
-
-echo "Adding third party Firmware"
-cd /
-echo "Getting Allo Piano Firmware"
-wget --no-check-certificate  https://github.com/allocom/piano-firmware/archive/master.tar.gz
-echo "Extracting Allo Firmwares"
-tar xf master.tar.gz
-cp -rp /piano-firmware-master/* /
-rm -rf /piano-firmware-master 
-rm /README.md
-rm master.tar.gz
-echo "Allo firmware installed"
-
-echo "Getting TauDAC Modules and overlay"
-wget https://github.com/taudac/modules/archive/rpi-volumio-"$KERNEL_VERSION"-taudac-modules.tar.gz
-echo "Extracting TauDAC Modules and overlay"
-tar --strip-components 1 --exclude *.hash -xf rpi-volumio-"$KERNEL_VERSION"-taudac-modules.tar.gz
-rm rpi-volumio-"$KERNEL_VERSION"-taudac-modules.tar.gz
-echo "TauDAC Modules and overlay installed"
-
-
-if [ "$KERNEL_VERSION" = "4.4.9" ]; then
-
-### Allo I2S Modules
-echo "Getting Allo DAC Modules"
-wget http://repo.volumio.org/Volumio2/Firmwares/rpi-volumio-4.4.9-AlloDAC-modules.tgz
-echo "Extracting Allo DAC modules"
-tar xf rpi-volumio-4.4.9-AlloDAC-modules.tgz
-rm rpi-volumio-4.4.9-AlloDAC-modules.tgz
-
-echo "Allo modules installed"
-
-echo "Adding Pisound Kernel Module and dtbo"
-wget http://repo.volumio.org/Volumio2/Firmwares/rpi-volumio-4.4.9-pisound-modules.tgz
-echo "Extracting  PiSound Modules"
-tar xf rpi-volumio-4.4.9-pisound-modules.tgz
-rm rpi-volumio-4.4.9-pisound-modules.tgz
-fi
-
-fi
 
 echo "Installing winbind here, since it freezes networking"
 apt-get install -y winbind libnss-winbind
