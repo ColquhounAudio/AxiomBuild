@@ -25,6 +25,15 @@ echo "Adding os-release infos"
 
 rm -rf build/$BUILD/root/volumio/http/www/.git
 
+# Download node modules
+echo "Installing pre-build node-modules package"
+wget -O build/$BUILD/root/volumio/node_modules.tar.gz https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/node_modules.tar.gz
+tar -zxf build/$BUILD/root/volumio/node_modules.tar.gz -C build/$BUILD/root/volumio
+rm -f build/$BUILD/root/volumio/node_modules.tar.gz
+
+
+
+
 chroot "build/$BUILD/root" /bin/bash -x <<'EOF'
 su -
 ./volumioconfig.sh

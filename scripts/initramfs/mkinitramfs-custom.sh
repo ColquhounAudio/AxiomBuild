@@ -400,6 +400,12 @@ if [ ${DPKG_ARCH} = "i386" ]; then
   cp "/usr/${LIB_GNUE}/libstdc++.so.6" "${DESTDIR}${LIB_GNUE}"
 fi
 
+echo "Adding xdelta and hashing methods"
+cp /usr/bin/xdelta3 "${DESTDIR}/sbin"
+cp /usr/bin/md5sum "${DESTDIR}/sbin"
+cp /usr/bin/sha1sum "${DESTDIR}/sbin"
+cp /usr/bin/sha256sum "${DESTDIR}/sbin"
+
 echo "Adding all common dependencies"
 cp "${LIB_GNUE}/libparted.so.2" "${DESTDIR}${LIB_GNUE}"
 cp "${LIB_GNUE}/libreadline.so.6" "${DESTDIR}${LIB_GNUE}"
@@ -410,6 +416,21 @@ cp "${LIB_GNUE}/libcom_err.so.2" "${DESTDIR}${LIB_GNUE}"
 cp "${LIB_GNUE}/libe2p.so.2" "${DESTDIR}${LIB_GNUE}"
 cp "${LIB_GNUE}/libgcc_s.so.1" "${DESTDIR}${LIB_GNUE}"
 cp "${LIB_GNUE}/libm.so.6" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/liblzma.so.5" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libc.so.6" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libdl.so.2" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libpthread.so.0" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libtinfo.so.5" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libuuid.so.1" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libdl.so.2" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libdevmapper.so.1.02.1" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libblkid.so.1" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/librt.so.1" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libselinux.so.1" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libudev.so.1" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libpcre.so.3" "${DESTDIR}${LIB_GNUE}"
+cp "${LIB_GNUE}/libgcc_s.so.1" "${DESTDIR}${LIB_GNUE}"
+
 
 
 
