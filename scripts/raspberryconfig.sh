@@ -139,11 +139,10 @@ max_usb_current=1
 # dtparam=audio=on
 audio_pwm_mode=2
 dtparam=i2c_arm=on
-disable_splash=1
+#disable_splash=1
 hdmi_force_hotplug=1
 # add overlay for mcp23017 GPIO expander
 dtoverlay=mcp23017,gpiopin=27,addr=0x25
-[Fri May  4 22:05:09 UTC 2018] Executing cat
 
 #20180606-Emre Ozkan-added overlay for applechip
 dtoverlay=i2c-rtc,pcf2127
