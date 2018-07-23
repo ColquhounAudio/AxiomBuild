@@ -197,15 +197,15 @@ rm /shairport-sync-3.0.2-arm.tar.gz
 #  chmod a+x /usr/sbin/hostapd-edimax
 #
 echo "interface=wlan0
-ssid=Volumio
+ssid=AxiomAir
 channel=4
 driver=rtl871xdrv
 hw_mode=g
 auth_algs=1
-wpa=2
-wpa_key_mgmt=WPA-PSK
-rsn_pairwise=CCMP
-wpa_passphrase=volumio2" >> /etc/hostapd/hostapd-edimax.conf
+#wpa=2
+#wpa_key_mgmt=WPA-PSK
+#rsn_pairwise=CCMP
+#wpa_passphrase=volumio2" >> /etc/hostapd/hostapd-edimax.conf
 chmod -R 777 /etc/hostapd-edimax.conf
 
 echo "Cleanup"
@@ -294,7 +294,7 @@ systemctl disable upmpdcli.service
 
 echo "Preventing un-needed dhcp servers to start automatically"
 systemctl disable isc-dhcp-server.service
-systemctl disable dhcpd.service
+#systemctl disable dhcpd.service
 
 echo "Linking Volumio Command Line Client"
 ln -s /volumio/app/plugins/system_controller/volumio_command_line_client/volumio.sh /usr/local/bin/volumio
@@ -342,15 +342,15 @@ ln -s /lib/systemd/system/wireless.service /etc/systemd/system/multi-user.target
 
 echo "Configuring hostapd"
 echo "interface=wlan0
-ssid=Volumio
+ssid=AxiomAir
 channel=4
 driver=nl80211
 hw_mode=g
 auth_algs=1
 wpa=2
-wpa_key_mgmt=WPA-PSK
-rsn_pairwise=CCMP
-wpa_passphrase=volumio2
+#wpa_key_mgmt=WPA-PSK
+#rsn_pairwise=CCMP
+#wpa_passphrase=volumio2
 " >> /etc/hostapd/hostapd.conf
 
 echo "Hostapd conf files"
