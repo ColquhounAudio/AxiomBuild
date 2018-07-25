@@ -273,7 +273,20 @@ print_msg "Previous update attempt failed, restoring fallbacks"
     rm /boot/kernel_update
   fi
   rm /boot/update_process
+  rm -rvf /mnt/imgpart/update
 fi
+
+# Run the axiom updater
+print_msg "Running axiom updater, please wait..."
+if [ -e /mnt/imgpart/update/update.sh ]; then
+  touch /boot/update_process
+  cd /mnt/imgpart/update/
+  ./update.sh
+  cd /
+  rm -rvf /mnt/imgpart/update
+  rm /boot/update_process
+fi
+
 
 # if the kernel has been updated, and no error has occurred before completition
 if [ -e "/boot/kernel_update" ]; then

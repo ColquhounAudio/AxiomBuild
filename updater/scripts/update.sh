@@ -4,9 +4,9 @@ if md5sum --status -c verify.hash; then
 	    echo "Applying update"
 	    xdelta3 -d -s ../volumio_current.sqsh ./delta.patch ../volumio_update.sqsh
 	    echo "Backing up previous image"
-	    cp ../volumio_current.sqsh ../volumio_fallback.sqsh
+	    mv ../volumio_current.sqsh ../volumio_fallback.sqsh
 	    echo "Installing new image"
-	    cp ../volumio_update.sqsh ../volumio_current.sqsh
+	    mv ../volumio_update.sqsh ../volumio_current.sqsh
 	    echo "Verifying final image"
 	    
 	    if md5sum --status -c final.hash; then
