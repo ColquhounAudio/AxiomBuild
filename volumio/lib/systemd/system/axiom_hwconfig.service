@@ -1,0 +1,19 @@
+# Axiom HWConfig Service
+# 20180406  RM Pickering
+#
+# Configure any GPIO pins and perform housekeeping tasks as required at system startup
+# NOTE: shutdown tasks are run at system shutdown by script in /lib/systemd/system-shutdown/.
+#
+
+[Unit]
+Description=Axiom Air HWconfig Service
+Before=network.target
+After=umount.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/axiom_setup.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

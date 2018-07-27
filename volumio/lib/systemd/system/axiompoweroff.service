@@ -1,0 +1,13 @@
+[Unit]
+Description = AxiomAir Poweroff Service
+DefaultDependencies=no
+Wants=volumio.service
+Before=poweroff.target
+
+[Service]
+ExecStart=/bin/bash /volumio/axiom_shutdown.sh
+
+[Install]
+WantedBy=poweroff.target
+
+

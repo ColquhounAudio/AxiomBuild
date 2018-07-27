@@ -158,6 +158,16 @@ echo "Installing MPD for armv7"
    dpkg -i mpd_0.20.20-1-volumio_armhf.deb
    rm mpd_0.20.20-1-volumio_armhf.deb
 
+
+echo "Installing Snapcast"
+   wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/snapserver_0.15.0_armhf.deb
+   dpkg -i snapclient_0.15.0_armhf.deb
+   rm snapclient_0.15.0_armhf.deb
+   wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/snapclient_0.15.0_armhf.deb
+   dpkg -i snapserver_0.15.0_armhf.deb
+   rm snapserver_0.15.0_armhf.deb
+
+
 #  echo "Adding volumio-remote-updater for armv7"
 #  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-remote-updater_1.3-armv7.deb
 #  dpkg -i volumio-remote-updater_1.3-armv7.deb
@@ -277,6 +287,11 @@ ln -s /lib/systemd/system/iptables.service /etc/systemd/system/multi-user.target
 echo "Enable AirplayD by default"
 systemctl enable airplay.service
 
+echo "Enable Axiom IO services"
+systemctl enable axiom_hwconfig.service
+systemctl enable axiom_ledinit.service
+systemctl enable axiompoweroff.service
+
 echo "Enable Volumio SSH enabler"
 ln -s /lib/systemd/system/volumiossh.service /etc/systemd/system/multi-user.target.wants/volumiossh.service
 
@@ -299,6 +314,9 @@ systemctl disable isc-dhcp-server.service
 echo "Linking Volumio Command Line Client"
 ln -s /volumio/app/plugins/system_controller/volumio_command_line_client/volumio.sh /usr/local/bin/volumio
 chmod a+x /usr/local/bin/volumio
+
+echo "Initialize the lease file for dhcpd"
+touch /var/lib/dhcp/dhcpd.leases
 
 #####################
 #Audio Optimizations#-----------------------------------------
@@ -347,7 +365,7 @@ channel=4
 driver=nl80211
 hw_mode=g
 auth_algs=1
-wpa=2
+#wpa=2
 #wpa_key_mgmt=WPA-PSK
 #rsn_pairwise=CCMP
 #wpa_passphrase=volumio2

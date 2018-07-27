@@ -1,0 +1,16 @@
+[Unit]
+Description=Axiom Led Init 
+After=wireless.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/bin/bash /usr/local/bin/axiom_ledsetup.sh
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
