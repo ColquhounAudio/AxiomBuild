@@ -1,0 +1,11 @@
+[Unit]
+Description=WAC
+After=avahi-daemon.service
+Wants=avahi-daemon.service
+[Service]
+Type=simple
+ExecStartPre=/bin/hotspot.sh
+ExecStart=/usr/local/bin/WACServer
+RestartSec=2
+StandardOutput=syslog
+StandardError=syslog

@@ -286,6 +286,7 @@ ln -s /lib/systemd/system/iptables.service /etc/systemd/system/multi-user.target
 #systemctl disable ssh.service
 echo "Enable AirplayD by default"
 systemctl enable airplay.service
+systemctl enable wac.service
 
 echo "Enable Axiom IO services"
 systemctl enable axiom_hwconfig.service
