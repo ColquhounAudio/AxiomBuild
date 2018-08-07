@@ -1,0 +1,15 @@
+[Unit]
+Description=Background Noise Service 
+After=wireless.service
+
+[Service]
+User=root
+Group=root
+ExecStart=/bin/bash /usr/local/bin/background_noise.sh
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
