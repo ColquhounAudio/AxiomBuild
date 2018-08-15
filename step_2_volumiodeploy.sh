@@ -2,14 +2,6 @@
 BUILD="arm"
 ARCH="armhf"
 
-echo "Build for arm/armv7/armv8 platform, copying qemu"
-cp /usr/bin/qemu-arm-static "build/$BUILD/root/usr/bin/"
-cp scripts/volumioconfig.sh "build/$BUILD/root"
-
-mount /dev "build/$BUILD/root/dev" -o bind
-mount /proc "build/$BUILD/root/proc" -t proc
-mount /sys "build/$BUILD/root/sys" -t sysfs
-
 echo 'Cloning Volumio Node Backend'
 mkdir "build/$BUILD/root/volumio"
 
@@ -32,15 +24,4 @@ tar -zxf build/$BUILD/root/volumio/node_modules.tar.gz -C build/$BUILD/root/volu
 rm -f build/$BUILD/root/volumio/node_modules.tar.gz
 
 
-
-
-chroot "build/$BUILD/root" /bin/bash -x <<'EOF'
-su -
-./volumioconfig.sh
-EOF
-
-echo "Unmounting Temp devices"
-umount -l "build/$BUILD/root/dev"
-umount -l "build/$BUILD/root/proc"
-umount -l "build/$BUILD/root/sys"
 

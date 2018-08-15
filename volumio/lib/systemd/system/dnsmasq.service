@@ -10,3 +10,6 @@ Restart=no
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=dnsmasq
+[Install]
+WantedBy=multi-user.target
+

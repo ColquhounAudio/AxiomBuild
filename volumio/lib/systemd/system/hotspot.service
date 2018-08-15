@@ -1,6 +1,8 @@
 [Unit]
 Wants=dhcpd.service
 Wants=dnsmasq.service
+BindsTo=sys-subsystem-net-devices-wlan0.device
+After=sys-subsystem-net-devices-wlan0.device
 
 [Service]
 Type=idle
@@ -11,4 +13,7 @@ Restart=no
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=hotspot
+
+[Install]
+WantedBy=multi-user.target
 

@@ -56,7 +56,6 @@ alias shutdown="sudo /sbin/shutdown"
 alias apt-get="sudo /usr/bin/apt-get"
 alias systemctl="/bin/systemctl"
 alias iwconfig="iwconfig wlan0"
-alias come="echo 'se fosse antani'"
 ## Utilities thanks to http://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html ##
 ## Colorize the ls output ##
 alias ls="ls --color=auto"
@@ -78,8 +77,6 @@ alias updatey="sudo apt-get --yes"
 ## Read Like humans ##
 alias df="df -H"
 alias du="du -ch"
-alias makemeasandwich="echo 'What? Make it yourself'"
-alias sudomakemeasandwich="echo 'OKAY'"
 alias snapclient="/usr/sbin/snapclient"
 alias snapserver="/usr/sbin/snapserver"
 alias mount="sudo /bin/mount"
@@ -87,10 +84,6 @@ alias systemctl="sudo /bin/systemctl"
 alias killall="sudo /usr/bin/killall"
 alias service="sudo /usr/sbin/service"
 alias ifconfig="sudo /sbin/ifconfig"
-# tv-service
-alias tvservice="/opt/vc/bin/tvservice"
-# vcgencmd
-alias vcgencmd="/opt/vc/bin/vcgencmd"
 ' >> /etc/bash.bashrc
 
 #Sudoers Nopasswd
@@ -104,7 +97,7 @@ volumio ALL=(ALL) NOPASSWD: /bin/sh /volumio/app/plugins/system_controller/volum
 EOF
 chmod 0440 ${SUDOERS_FILE}
 
-echo volumio > /etc/hostname
+echo AxiomAir-default > /etc/hostname
 chmod 777 /etc/hostname
 chmod 777 /etc/hosts
 
@@ -161,9 +154,11 @@ echo "Installing MPD for armv7"
 
 echo "Installing Snapcast"
    wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/snapserver_0.15.0_armhf.deb
+   wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/snapclient_0.15.0_armhf.deb
+
    dpkg -i snapclient_0.15.0_armhf.deb
    rm snapclient_0.15.0_armhf.deb
-   wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/snapclient_0.15.0_armhf.deb
+ 
    dpkg -i snapserver_0.15.0_armhf.deb
    rm snapserver_0.15.0_armhf.deb
 
@@ -177,15 +172,15 @@ echo "Installing Snapcast"
 update-rc.d upmpdcli remove
 
 
-echo "Installing Shairport-Sync"
-wget http://repo.volumio.org/Volumio2/Binaries/shairport-sync-metadata-reader-arm.tar.gz
-tar xf shairport-sync-metadata-reader-arm.tar.gz
-rm /shairport-sync-metadata-reader-arm.tar.gz
+#echo "Installing Shairport-Sync"
+#wget http://repo.volumio.org/Volumio2/Binaries/shairport-sync-metadata-reader-arm.tar.gz
+#tar xf shairport-sync-metadata-reader-arm.tar.gz
+#rm /shairport-sync-metadata-reader-arm.tar.gz
 
-echo "Installing Shairport-Sync Metadata Reader"
-wget http://repo.volumio.org/Volumio2/Binaries/shairport-sync-3.0.2-arm.tar.gz
-tar xf shairport-sync-3.0.2-arm.tar.gz
-rm /shairport-sync-3.0.2-arm.tar.gz
+#echo "Installing Shairport-Sync Metadata Reader"
+#wget http://repo.volumio.org/Volumio2/Binaries/shairport-sync-3.0.2-arm.tar.gz
+#tar xf shairport-sync-3.0.2-arm.tar.gz
+#rm /shairport-sync-3.0.2-arm.tar.gz
 
 #  echo "Volumio Init Updater"
 #  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
@@ -286,7 +281,6 @@ ln -s /lib/systemd/system/iptables.service /etc/systemd/system/multi-user.target
 #systemctl disable ssh.service
 echo "Enable AirplayD by default"
 systemctl enable airplay.service
-systemctl enable wac.service
 
 echo "Enable Axiom IO services"
 systemctl enable axiom_hwconfig.service
@@ -300,9 +294,10 @@ echo "Setting Mpd to SystemD instead of Init"
 update-rc.d mpd remove
 systemctl enable mpd.service
 
-echo "Preventing hotspot services from starting at boot"
-systemctl disable hotspot.service
-systemctl disable dnsmasq.service
+echo "Enable hotspot services at boot"
+systemctl enable hotspot.service
+systemctl enable dnsmasq.service
+systemctl enable wac.service
 
 echo "Preventing upmpdcli at boot"
 systemctl disable upmpdcli.service

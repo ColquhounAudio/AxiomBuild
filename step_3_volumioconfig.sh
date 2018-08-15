@@ -5,6 +5,15 @@
 BUILD="arm"
 ARCH="armhf"
 
+echo "Build for arm/armv7/armv8 platform, copying qemu"
+cp /usr/bin/qemu-arm-static "build/$BUILD/root/usr/bin/"
+cp scripts/volumioconfig.sh "build/$BUILD/root"
+
+mount /dev "build/$BUILD/root/dev" -o bind
+mount /proc "build/$BUILD/root/proc" -t proc
+mount /sys "build/$BUILD/root/sys" -t sysfs
+
+
 echo 'Copying Custom Volumio System Files'
 #Apt conf file
 echo 'Copying ARM related configuration files'
@@ -33,9 +42,8 @@ cp volumio/etc/inittab build/$BUILD/root/etc/inittab
 cp volumio/etc/motd build/$BUILD/root/etc/motd
 #SSH
 cp volumio/etc/ssh/sshd_config build/$BUILD/root/etc/ssh/sshd_config
-#Mpd
-cp volumio/etc/mpd.conf build/$BUILD/root/etc/mpd.conf
-chmod 777 build/$BUILD/root/etc/mpd.conf
+#Avahi
+cp volumio/etc/avahi/services/*.service build/$BUILD/root/etc/avahi/services/
 #Log via JournalD in RAM
 cp volumio/etc/systemd/journald.conf build/$BUILD/root/etc/systemd/journald.conf
 #Volumio SystemD Services
@@ -80,5 +88,29 @@ cp volumio/bin/volumio_cpu_tweak build/$BUILD/root/bin/volumio_cpu_tweak
 chmod a+x build/$BUILD/root/bin/volumio_cpu_tweak
 #LAN HOTPLUG
 cp volumio/etc/default/ifplugd build/$BUILD/root/etc/default/ifplugd
-
+#Airplay config files
+cp -r volumio/etc/airplayd build/$BUILD/root/etc/
+#Alsa config
+cp volumio/etc/asound.conf build/$BUILD/root/etc/
+#Axiom Signature
+cp volumio/etc/axiom-image-signature-public.pem build/$BUILD/root/etc/
 echo 'Done Copying Custom Volumio System Files'
+
+chroot "build/$BUILD/root" /bin/bash -x <<'EOF'
+pwd
+echo "Foo"
+./volumioconfig.sh
+EOF
+
+echo "Unmounting Temp devices"
+umount -l "build/$BUILD/root/dev"
+umount -l "build/$BUILD/root/proc"
+umount -l "build/$BUILD/root/sys"
+
+#Mpd
+cp volumio/etc/mpd.conf build/$BUILD/root/etc/mpd.conf
+chmod 777 build/$BUILD/root/etc/mpd.conf
+chown -R mpd:audio build/$BUILD/var/run/mpd
+
+
+

@@ -9,3 +9,6 @@ ExecStart=/usr/local/bin/WACServer
 RestartSec=2
 StandardOutput=syslog
 StandardError=syslog
+[Install]
+WantedBy=multi-user.target
+

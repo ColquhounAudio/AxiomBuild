@@ -51,12 +51,12 @@ apt-get -y install binutils i2c-tools
 #apt-get -y install libnewt0.52 whiptail triggerhappy lua5.1 locales
 
 echo "Installing Kernel from Rpi-Update"
-sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/ColquhounAudio/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
 touch /boot/start.elf
 mkdir /lib/modules
 
 
-KERNEL_VERSION="4.14.42"
+KERNEL_VERSION="4.14.61"
 
 case $KERNEL_VERSION in
     "4.4.9")
@@ -79,6 +79,12 @@ case $KERNEL_VERSION in
       KERNEL_COMMIT="d68045945570b418ac48830374366613de3278f3"
       FIRMWARE_COMMIT=$KERNEL_COMMIT
       ;;
+    "4.14.61")
+      KERNEL_REV="1133"
+      KERNEL_COMMIT="e16b6270dfa675f2a99545e611d2e834dbc2a064"
+      FIRMWARE_COMMIT=$KERNEL_COMMIT
+      ;;
+
 esac
 
 # using rpi-update relevant to defined kernel version
