@@ -110,7 +110,8 @@ umount -l "build/$BUILD/root/sys"
 #Mpd
 cp volumio/etc/mpd.conf build/$BUILD/root/etc/mpd.conf
 chmod 777 build/$BUILD/root/etc/mpd.conf
-chown -R mpd:audio build/$BUILD/var/run/mpd
+chown -R 112:29 build/$BUILD/root/var/run/mpd
+chmod 777 build/$BUILD/root/var/run/mpd
 
 
 

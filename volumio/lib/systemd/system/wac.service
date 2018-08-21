@@ -2,6 +2,8 @@
 Description=WAC
 After=avahi-daemon.service
 Wants=avahi-daemon.service
+BindsTo=sys-subsystem-net-devices-wlan0.device
+After=sys-subsystem-net-devices-wlan0.device
 [Service]
 Type=simple
 ExecStartPre=/bin/hotspot.sh
