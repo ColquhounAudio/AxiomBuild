@@ -50,8 +50,8 @@ cp volumio/etc/systemd/journald.conf build/$BUILD/root/etc/systemd/journald.conf
 cp -r volumio/lib build/$BUILD/root/
 # Netplug
 # removed , we are using ifplugd
-#cp -rp volumio/etc/netplug build/$BUILD/root/etc/
-#chmod +x build/$BUILD/root/etc/netplug/netplug
+cp -rp volumio/etc/netplug build/$BUILD/root/etc/
+chmod +x build/$BUILD/root/etc/netplug/netplug
 # Network
 cp -r volumio/etc/network/* build/$BUILD/root/etc/network
 # Wpa Supplicant

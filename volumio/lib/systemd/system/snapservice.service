@@ -1,0 +1,15 @@
+[Unit]
+
+[Service]
+ExecStart=/usr/local/bin/node /volumio/app/plugins/audio_interface/multiroom/snapservice.js
+Type=idle
+Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=snapservice
+User=root
+Group=root
+Environment=NODE_ENV=production
+[Install]
+WantedBy=multi-user.target

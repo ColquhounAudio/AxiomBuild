@@ -261,6 +261,17 @@ chmod g+rwx /run/mpd
 echo "Setting Permissions for /etc/modules"
 chmod 777 /etc/modules
 
+
+
+echo "Netplug service"
+systemctl enable netplug
+
+echo "SnapService"
+ln -s /lib/systemd/system/snapservice.service /etc/systemd/system/multi-user.target.wants/snapservice.service
+
+echo "Quality Check"
+ln -s /lib/systemd/system/qualitycheck.service /etc/systemd/system/multi-user.target.wants/qualitycheck.service
+
 echo "Adding Volumio Parent Service to Startup"
 #systemctl enable volumio.service
 ln -s /lib/systemd/system/volumio.service /etc/systemd/system/multi-user.target.wants/volumio.service
@@ -296,10 +307,10 @@ systemctl enable mpd.service
 
 echo "Disable hotspot services at boot"
 systemctl disable hotspot.service
-systemctl enable dnsmasq.service
+systemctl disable dnsmasq.service
 
 echo "Enable wac services at boot"
-systemctl enable wac.service
+systemctl disable wac.service
 
 echo "Preventing upmpdcli at boot"
 systemctl disable upmpdcli.service

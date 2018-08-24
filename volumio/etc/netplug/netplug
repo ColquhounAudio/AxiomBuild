@@ -7,23 +7,32 @@ case "$dev" in
 eth0)
     case "$action" in
     in) 
-	#systemctl stop wireless
+	systemctl stop wac
+	systemctl stop hotspot
+	systemctl stop wireless
 	#sleep 1
-	#echo lan >/tmp/networkstatus
+	ifconfig wlan0 down
+	ip addr flush wlan0
+	cat /sys/class/net/eth0/address >/tmp/mac
+        systemctl restart airplay
+	#killall dhcpcd
+	systemctl start dhcpcd
+	echo lan >/tmp/networkstatus
 	
         ;;
     out)
-	#systemctl restart wireless
+	ip addr flush dev eth0
+	systemctl restart wireless
         ;;
      probe)
 	#systemctl stop wac
-	
+	systemctl stop hotspot
 	#sleep 1
-    ifconfig eth0 up
-	#cable="$(grep "" /sys/class/net/eth0/carrier)"
-	#if [ $cable == "0" ]; then
-	systemctl restart wireless 
-	#fi
+     	ifconfig eth0 up
+	cable="$(grep "" /sys/class/net/eth0/carrier)"
+	if [ $cable == "0" ]; then
+		systemctl restart wireless &
+	fi
 	
 	exit 0
    esac
@@ -31,17 +40,19 @@ eth0)
 wlan0)
 	case "$action" in
     in)
-	
+        cat /sys/class/net/wlan0/address >/tmp/mac
         ;;
     out)
 	#systemctl stop wac
-	#cable="$(grep "" /sys/class/net/eth0/carrier)"
-	#if [ $cable == "0" ]; then
-	systemctl restart wireless 
-	#fi
+	systemctl stop hotspot
+	cable="$(grep "" /sys/class/net/eth0/carrier)"
+ 	if [ $cable == "0" ]; then
+ 		systemctl restart wireless &
+	fi
 	;;
     probe)
 	;;
     esac
     ;;
 esac
+
