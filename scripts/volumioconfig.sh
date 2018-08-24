@@ -364,8 +364,8 @@ echo "net.ipv6.conf.all.disable_ipv6 = 1" | tee -a /etc/sysctl.conf
 echo "net.ipv6.conf.default.disable_ipv6 = 1" | tee -a /etc/sysctl.conf
 echo "net.ipv6.conf.lo.disable_ipv6 = 1" | tee -a /etc/sysctl.conf
 
-echo "Wireless"
-ln -s /lib/systemd/system/wireless.service /etc/systemd/system/multi-user.target.wants/wireless.service
+#echo "Wireless"
+#ln -s /lib/systemd/system/wireless.service /etc/systemd/system/multi-user.target.wants/wireless.service
 
 echo "Configuring hostapd"
 echo "interface=wlan0
