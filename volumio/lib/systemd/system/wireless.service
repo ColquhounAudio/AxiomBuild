@@ -5,7 +5,7 @@ Before=volumio.service
 [Service]
 Type=forking
 ExecStartPre=-/bin/wifistart.sh
-ExecStart=/volumio/app/plugins/system_controller/network/wireless.js start
+ExecStart=/volumio/axiom/wireless.js start
 KillMode=mixed
 
 [Install]
