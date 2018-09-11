@@ -115,4 +115,9 @@ chown -R 112:29 build/$BUILD/root/var/run/mpd
 chmod 777 build/$BUILD/root/var/run/mpd
 
 
+BUILDDATE=$(date -I)
+cat version.info >> build/$BUILD/root/etc/os-release
+echo "VOLUMIO_BUILD_DATE=\"$BUILDDATE\"\n" >> build/$BUILD/root/etc/os-release
+
+
 

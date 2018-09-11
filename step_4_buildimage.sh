@@ -1,5 +1,7 @@
 #!/bin/sh
-VERSION="V2.00"
+
+. ./version.info
+
 BUILDDATE=$(date -I)
 
 IMG_FILE="AxiomAir${VERSION}-${BUILDDATE}-pi.img"
@@ -7,7 +9,6 @@ IMG_FILE="AxiomAir${VERSION}-${BUILDDATE}-pi.img"
 
 echo "Creating Image Bed"
 echo "Image file: ${IMG_FILE}"
-
 
 dd if=/dev/zero of=${IMG_FILE} bs=1M count=2800
 LOOP_DEV=`sudo losetup -f --show ${IMG_FILE}`

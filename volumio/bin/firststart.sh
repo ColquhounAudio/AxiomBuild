@@ -32,6 +32,38 @@ echo "127.0.0.1 localhost $NEW_HOSTNAME" > /etc/hosts
 /bin/hostname -F /etc/hostname
 
 
+echo "Restarting early start services"
+
+if(systemctl -q is-active volumio.service)
+then
+	systemctl restart volumio
+fi
+
+if(systemctl -q is-active wireless.service)
+then
+	systemctl restart wireless
+fi
+
+if(systemctl -q is-active wac.service)
+then
+	systemctl restart wac
+fi
+
+if(systemctl -q is-active airplay.service)
+then
+	systemctl restart airplay
+fi
+
+if(systemctl -q is-active volspotconnect2.service)
+then
+	systemctl restart volspotconnect2
+fi
+
+if(systemctl -q is-active mpd.service)
+then
+	systemctl restart mpd
+fi
+
 echo "Disabling firststart service"
 systemctl disable firststart.service
 

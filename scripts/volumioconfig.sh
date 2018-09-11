@@ -297,6 +297,7 @@ echo "Enable Axiom IO services"
 systemctl enable axiom_hwconfig.service
 systemctl enable axiom_ledinit.service
 systemctl enable axiompoweroff.service
+systemctl enable update_service.service
 
 echo "Enable Volumio SSH enabler"
 ln -s /lib/systemd/system/volumiossh.service /etc/systemd/system/multi-user.target.wants/volumiossh.service

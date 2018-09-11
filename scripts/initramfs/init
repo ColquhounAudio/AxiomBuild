@@ -219,12 +219,6 @@ if [ ! -e ${loop_free} ]; then
 fi
 losetup $loop_free /mnt/imgpart/${IMGFILE}
 
-# 3) mount the squashfs to /mnt/static
-[ -d /mnt/static ] || mkdir /mnt/static
-mount -t squashfs $loop_free /mnt/static
-
-VOLUMIO_VERSION="$(cat /mnt/static/etc/os-release | grep VOLUMIO_VERSION)"
-
 #if there is factory file then format data partition
 #
 mkdir /mnt/factory
@@ -305,6 +299,15 @@ print_msg "unpacking kernel"
   rm -rf /boot
   echo b > /proc/sysrq-trigger
 fi
+
+
+
+# 3) mount the squashfs to /mnt/static
+[ -d /mnt/static ] || mkdir /mnt/static
+mount -t squashfs $loop_free /mnt/static
+
+VOLUMIO_VERSION="$(cat /mnt/static/etc/os-release | grep VOLUMIO_VERSION)"
+
 
 # if data partition needs to be resized
 #mount -t auto /dev/${BOOTDEV}p1 /boot
