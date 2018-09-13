@@ -1,0 +1,17 @@
+[Unit]
+Description = Axiom Updater Service
+Wants=volumio.service
+
+
+[Service]
+ExecStart=/usr/local/bin/update_service
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=updater
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+
