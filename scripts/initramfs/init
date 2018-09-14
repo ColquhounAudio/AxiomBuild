@@ -279,6 +279,8 @@ if [ -e /mnt/imgpart/update/update.sh ]; then
   cd /
   rm -rvf /mnt/imgpart/update
   rm /boot/update_process
+  print_msg "Restarting"
+  echo b > /proc/sysrq-trigger
 fi
 
 
