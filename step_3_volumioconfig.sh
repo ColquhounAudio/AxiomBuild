@@ -113,6 +113,8 @@ cp volumio/etc/default/mpd build/$BUILD/root/etc/default/
 chmod 777 build/$BUILD/root/etc/mpd.conf
 chown -R 112:29 build/$BUILD/root/var/run/mpd
 chmod 777 build/$BUILD/root/var/run/mpd
+touch build/$BUILD/root/etc/airplayd/airplayname
+chmod 777 build/$BUILD/root/etc/airplayd/airplayname
 
 
 BUILDDATE=$(date -I)
