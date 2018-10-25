@@ -69,3 +69,4 @@ systemctl disable firststart.service
 
 echo "Finalizing"
 sync
+reboot

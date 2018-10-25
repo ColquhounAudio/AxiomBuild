@@ -92,6 +92,8 @@ cp volumio/etc/default/ifplugd build/$BUILD/root/etc/default/ifplugd
 cp -r volumio/etc/airplayd build/$BUILD/root/etc/
 #Alsa config
 cp volumio/etc/asound.conf build/$BUILD/root/etc/
+#Bluetooth config
+cp volumio/etc/bluetooth/* build/$BUILD/root/etc/bluetooth/
 #Axiom Signature
 cp volumio/etc/axiom-image-signature-public.pem build/$BUILD/root/etc/
 echo 'Done Copying Custom Volumio System Files'

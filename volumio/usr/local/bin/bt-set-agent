@@ -1,0 +1,2 @@
+#!/bin/sh
+/bin/echo -e "power on\ndiscoverable on\nagent NoInputNoOutput\ndefault-agent\nexit" | /usr/bin/bluetoothctl

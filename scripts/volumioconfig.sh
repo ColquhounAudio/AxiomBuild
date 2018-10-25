@@ -162,11 +162,17 @@ echo "Installing Snapcast"
    dpkg -i snapserver_0.15.0_armhf.deb
    rm snapserver_0.15.0_armhf.deb
 
+   ln -s /usr/bin/snapserver /usr/sbin/snapserver
+   ln -s /usr/bin/snapclient /usr/sbin/snapclient
 
-#  echo "Adding volumio-remote-updater for armv7"
-#  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-remote-updater_1.3-armv7.deb
-#  dpkg -i volumio-remote-updater_1.3-armv7.deb
-#  rm volumio-remote-updater_1.3-armv7.deb
+   chmod a+x /usr/bin/snapserver
+   chmod a+x /usr/bin/snapclient
+
+   chmod a+x /usr/sbin/snapserver
+   chmod a+x /usr/sbin/snapclient
+
+   systemctl disable snapserver
+   systemctl disable snapclient
 
 #Remove autostart of upmpdcli
 update-rc.d upmpdcli remove
@@ -182,15 +188,16 @@ update-rc.d upmpdcli remove
 #tar xf shairport-sync-3.0.2-arm.tar.gz
 #rm /shairport-sync-3.0.2-arm.tar.gz
 
-#  echo "Volumio Init Updater"
-#  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
-#  chmod a+x /usr/local/sbin/volumio-init-updater
-#  echo "Installing Snapcast for multiroom"
+#  echo "Adding volumio-remote-updater for armv7"
+#  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-remote-updater_1.3-armv7.deb
+#  dpkg -i volumio-remote-updater_1.3-armv7.deb
+#  rm volumio-remote-updater_1.3-armv7.deb
 
-#  wget http://repo.volumio.org/Volumio2/Binaries/arm/snapserver -P /usr/sbin/
-#  wget http://repo.volumio.org/Volumio2/Binaries/arm/snapclient -P  /usr/sbin/
-#  chmod a+x /usr/sbin/snapserver
-#  chmod a+x /usr/sbin/snapclient
+
+echo "Volumio Init Updater"
+#  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
+wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
+chmod a+x /usr/local/sbin/volumio-init-updater
 
 #  echo "Zsync"
 #  rm /usr/bin/zsync
