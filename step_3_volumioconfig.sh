@@ -99,8 +99,6 @@ cp volumio/etc/axiom-image-signature-public.pem build/$BUILD/root/etc/
 echo 'Done Copying Custom Volumio System Files'
 
 chroot "build/$BUILD/root" /bin/bash -x <<'EOF'
-pwd
-echo "Foo"
 ./volumioconfig.sh
 EOF
 
