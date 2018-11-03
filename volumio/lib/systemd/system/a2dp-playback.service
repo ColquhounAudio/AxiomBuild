@@ -1,7 +1,7 @@
 [Unit]
 Description=A2DP Playback
-After=bluealsa.service syslog.service
-Requires=bluealsa.service
+After=bt-agent.service bluealsa.service syslog.service
+Requires=bluealsa.service bt-agent.service
 
 [Service]
 ExecStartPre=/bin/sleep 3

@@ -1,2 +1,20 @@
-#!/bin/sh
-/bin/echo -e "power on\ndiscoverable on\nagent NoInputNoOutput\ndefault-agent\nexit" | /usr/bin/bluetoothctl
+#!/usr/bin/expect -f
+
+set prompt "#"
+
+spawn bluetoothctl -a
+expect -re $prompt
+send "power on\r"
+sleep 0.1
+expect -re $prompt
+send "discoverable on\r"
+sleep 0.1
+expect -re $prompt
+send "agent NoInputNoOutput\r"
+sleep 0.1
+expect -re $prompt
+send "default-agent\r"
+sleep 0.1
+expect -re $prompt
+send "quit\r"
+expect eof

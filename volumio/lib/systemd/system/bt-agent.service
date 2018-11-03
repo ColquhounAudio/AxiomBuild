@@ -1,0 +1,9 @@
+[Unit]
+Description=BT-Agent
+Requires=bluetooth.service
+After=bluetooth.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/bt-agent -p /etc/bt-pins.cfg
