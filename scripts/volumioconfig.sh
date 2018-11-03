@@ -296,8 +296,8 @@ ln -s /lib/systemd/system/dynamicswap.service /etc/systemd/system/multi-user.tar
 echo "Adding Iptables Service"
 ln -s /lib/systemd/system/iptables.service /etc/systemd/system/multi-user.target.wants/iptables.service
 
-#echo "Disabling SSH by default"
-#systemctl disable ssh.service
+echo "Disabling SSH by default"
+systemctl disable ssh.service
 echo "Enable AirplayD by default"
 systemctl enable airplay.service
 
