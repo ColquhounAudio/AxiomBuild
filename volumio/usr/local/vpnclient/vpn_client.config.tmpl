@@ -1,0 +1,102 @@
+﻿# Software Configuration File
+# ---------------------------
+# 
+# You may edit this file when the VPN Server / Client / Bridge program is not running.
+# 
+# In prior to edit this file manually by your text editor,
+# shutdown the VPN Server / Client / Bridge background service.
+# Otherwise, all changes will be lost.
+# 
+declare root
+{
+	bool DisableRelayServer false
+	bool DontSavePassword false
+	bool EnableVPNGateService false
+	byte EncryptedPassword +WzqGYrR3VYXrAhKPZLGEHcIwO8=
+	bool HideVPNGateServiceMessage false
+	bool PasswordRemoteOnly false
+	string UserAgent Mozilla/5.0$20(Windows$20NT$206.3;$20WOW64;$20rv:29.0)$20Gecko/20100101$20Firefox/29.0
+	uint UseSecureDeviceId 0
+
+	declare AccountDatabase
+	{
+		declare Account0
+		{
+			bool CheckServerCert false
+			uint64 CreateDateTime 1541159448675
+			uint64 LastConnectDateTime 1541194517730
+			string ShortcutKey 655E0408611E646992B752DA96857E061B3BA170
+			bool StartupAccount true
+			uint64 UpdateDateTime 1541160995767
+
+			declare ClientAuth
+			{
+				uint AuthType 0
+				string Username axiomair
+			}
+			declare ClientOption
+			{
+				string AccountName AirSupport
+				uint AdditionalConnectionInterval 1
+				uint ConnectionDisconnectSpan 0
+				string DeviceName VPN
+				bool DisableQoS false
+				bool HalfConnection false
+				bool HideNicInfoWindow false
+				bool HideStatusWindow false
+				string Hostname airsupport.axiomaudio.com
+				string HubName VPN
+				uint MaxConnection 1
+				bool NoRoutingTracking false
+				bool NoTls1 false
+				bool NoUdpAcceleration false
+				uint NumRetry 4294967295
+				uint Port 443
+				uint PortUDP 0
+				string ProxyName $
+				byte ProxyPassword $
+				uint ProxyPort 0
+				uint ProxyType 0
+				string ProxyUsername $
+				bool RequireBridgeRoutingMode false
+				bool RequireMonitorMode false
+				uint RetryInterval 15
+				bool UseCompress false
+				bool UseEncrypt true
+			}
+		}
+	}
+	declare ClientManagerSetting
+	{
+		bool EasyMode false
+		bool LockMode false
+	}
+	declare CommonProxySetting
+	{
+		string ProxyHostName $
+		uint ProxyPort 0
+		uint ProxyType 0
+		string ProxyUsername $
+	}
+	declare Config
+	{
+		bool AllowRemoteConfig true
+		uint64 AutoDeleteCheckDiskFreeSpaceMin 104857600
+		string KeepConnectHost keepalive.softether.org
+		uint KeepConnectInterval 50
+		uint KeepConnectPort 80
+		uint KeepConnectProtocol 1
+		bool NoChangeWcmNetworkSettingOnWindows8 false
+		bool UseKeepConnect false
+	}
+	declare RootCA
+	{
+	}
+	declare UnixVLan
+	{
+		declare VPN
+		{
+			bool Enabled true
+		}
+	}
+}

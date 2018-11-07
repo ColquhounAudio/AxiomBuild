@@ -1,0 +1,32 @@
+2018-11-03 06:07:17.261 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: The command has been canceled by user. (code 6)
+2018-11-03 06:07:17.379 The SoftEther VPN Client Engine has been shut down.
+2018-11-03 06:07:17.379 ------------------------------------------------------
+2018-11-03 06:34:11.634 ------------------------------------------------------
+2018-11-03 06:34:11.634 SoftEther VPN Client Version 4.28 Build 9669   (English)
+2018-11-03 06:34:11.634 Compiled 2018/09/11 12:23:27 by yagi at pc33
+2018-11-03 06:34:11.634 The SoftEther VPN Client Engine has been started.
+2018-11-03 06:34:11.634 Loading configuration file...
+2018-11-03 06:34:11.634 Monitoring the directory "/home/volumio/vpnclient". If the amount of available free disk space becomes less than 100.00 MBytes, the backup files for log files and configurations that are saved on the sub-directories of this directory will be automatically deleted in the order of oldest first. The amount of free disk space that determines when to start deletion can be modified by changing the "AutoDeleteCheckDiskFreeSpaceMin" item in the configuration file.
+2018-11-03 06:34:11.634 The configuration file has been loaded.
+2018-11-03 06:35:17.691 A Virtual Network Adapter "VPN" has been created.
+2018-11-03 06:35:17.722 Connection processing for VPN Connection Setting "Harley" has started.
+2018-11-03 06:35:17.732 VPN Connection Setting "Harley": Connection operation starting (this is now 1 times).
+2018-11-03 06:35:18.078 VPN Connection Setting "Harley": Now connected. Session name: "SID-AXIOMAIR-3"
+2018-11-03 06:36:50.483 Disconnecting the VPN Connection Setting "Harley".
+2018-11-03 06:36:50.483 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: The command has been canceled by user. (code 6)
+2018-11-03 06:36:56.085 The SoftEther VPN Client Engine has been shut down.
+2018-11-03 06:36:56.085 ------------------------------------------------------
+2018-11-03 06:43:31.649 ------------------------------------------------------
+2018-11-03 06:43:31.649 SoftEther VPN Client Version 4.28 Build 9669   (English)
+2018-11-03 06:43:31.649 Compiled 2018/09/11 12:23:27 by yagi at pc33
+2018-11-03 06:43:31.659 The SoftEther VPN Client Engine has been started.
+2018-11-03 06:43:31.659 Loading configuration file...
+2018-11-03 06:43:31.659 Monitoring the directory "/home/volumio/vpnclient". If the amount of available free disk space becomes less than 100.00 MBytes, the backup files for log files and configurations that are saved on the sub-directories of this directory will be automatically deleted in the order of oldest first. The amount of free disk space that determines when to start deletion can be modified by changing the "AutoDeleteCheckDiskFreeSpaceMin" item in the configuration file.
+2018-11-03 06:43:31.659 The configuration file has been loaded.
+2018-11-03 06:43:31.671 A Virtual Network Adapter "VPN" has been created.
+2018-11-03 06:43:31.724 Connection processing for VPN Connection Setting "AirSupport" has started.
+2018-11-03 06:43:31.724 VPN Connection Setting "AirSupport": Connection operation starting (this is now 1 times).
+2018-11-03 06:43:31.989 VPN Connection Setting "AirSupport": Now connected. Session name: "SID-AXIOMAIR-4"
+2018-11-03 06:53:25.746 VPN Connection Setting "AirSupport": The connection has been either disconnected or it failed. Cause: The command has been canceled by user. (code 6)
+2018-11-03 06:53:25.870 The SoftEther VPN Client Engine has been shut down.
+2018-11-03 06:53:25.870 ------------------------------------------------------
