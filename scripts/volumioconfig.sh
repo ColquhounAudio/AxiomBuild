@@ -93,7 +93,8 @@ cat > ${SUDOERS_FILE} << EOF
 # Add permissions for volumio user
 volumio ALL=(ALL) ALL
 volumio ALL=(ALL) NOPASSWD: /sbin/poweroff,/sbin/shutdown,/sbin/reboot,/sbin/halt,/bin/systemctl,/usr/bin/apt-get,/usr/sbin/update-rc.d,/usr/bin/gpio,/bin/mount,/bin/umount,/sbin/iwconfig,/sbin/iwlist,/sbin/ifconfig,/usr/bin/killall,/bin/ip,/usr/sbin/service,/etc/init.d/netplug,/bin/journalctl,/bin/chmod,/sbin/ethtool,/usr/sbin/alsactl,/bin/tar,/usr/bin/dtoverlay,/sbin/dhclient,/usr/sbin/i2cdetect,/sbin/dhcpcd,/usr/bin/alsactl,/bin/mv,/sbin/iw,/bin/hostname,/sbin/modprobe,/sbin/iwgetid,/bin/ln,/usr/bin/unlink,/bin/dd,/usr/bin/dcfldd,/opt/vc/bin/vcgencmd
-volumio ALL=(ALL) NOPASSWD: /bin/sh /volumio/app/plugins/system_controller/volumio_command_line_client/commands/kernelsource.sh, /bin/sh /volumio/app/plugins/system_controller/volumio_command_line_client/commands/pull.sh, /usr/local/bin/axiom-updater.sh
+volumio ALL=(ALL) NOPASSWD: /bin/sh /volumio/app/plugins/system_controller/volumio_command_line_client/commands/kernelsource.sh, /bin/sh /volumio/app/plugins/system_controller/volumio_command_line_client/commands/pull.sh, /usr/local/bin/axiom-updater.sh, /usr/local/vpnclient/vpnclient, /usr/local/vpnclient/vpncmd
+
 EOF
 chmod 0440 ${SUDOERS_FILE}
 
@@ -162,11 +163,17 @@ echo "Installing Snapcast"
    dpkg -i snapserver_0.15.0_armhf.deb
    rm snapserver_0.15.0_armhf.deb
 
+   ln -s /usr/bin/snapserver /usr/sbin/snapserver
+   ln -s /usr/bin/snapclient /usr/sbin/snapclient
 
-#  echo "Adding volumio-remote-updater for armv7"
-#  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-remote-updater_1.3-armv7.deb
-#  dpkg -i volumio-remote-updater_1.3-armv7.deb
-#  rm volumio-remote-updater_1.3-armv7.deb
+   chmod a+x /usr/bin/snapserver
+   chmod a+x /usr/bin/snapclient
+
+   chmod a+x /usr/sbin/snapserver
+   chmod a+x /usr/sbin/snapclient
+
+   systemctl disable snapserver
+   systemctl disable snapclient
 
 #Remove autostart of upmpdcli
 update-rc.d upmpdcli remove
@@ -182,15 +189,16 @@ update-rc.d upmpdcli remove
 #tar xf shairport-sync-3.0.2-arm.tar.gz
 #rm /shairport-sync-3.0.2-arm.tar.gz
 
-#  echo "Volumio Init Updater"
-#  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
-#  chmod a+x /usr/local/sbin/volumio-init-updater
-#  echo "Installing Snapcast for multiroom"
+#  echo "Adding volumio-remote-updater for armv7"
+#  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-remote-updater_1.3-armv7.deb
+#  dpkg -i volumio-remote-updater_1.3-armv7.deb
+#  rm volumio-remote-updater_1.3-armv7.deb
 
-#  wget http://repo.volumio.org/Volumio2/Binaries/arm/snapserver -P /usr/sbin/
-#  wget http://repo.volumio.org/Volumio2/Binaries/arm/snapclient -P  /usr/sbin/
-#  chmod a+x /usr/sbin/snapserver
-#  chmod a+x /usr/sbin/snapclient
+
+echo "Volumio Init Updater"
+#  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
+wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
+chmod a+x /usr/local/sbin/volumio-init-updater
 
 #  echo "Zsync"
 #  rm /usr/bin/zsync
@@ -288,8 +296,8 @@ ln -s /lib/systemd/system/dynamicswap.service /etc/systemd/system/multi-user.tar
 echo "Adding Iptables Service"
 ln -s /lib/systemd/system/iptables.service /etc/systemd/system/multi-user.target.wants/iptables.service
 
-#echo "Disabling SSH by default"
-#systemctl disable ssh.service
+echo "Disabling SSH by default"
+systemctl disable ssh.service
 echo "Enable AirplayD by default"
 systemctl enable airplay.service
 

@@ -1,0 +1,75 @@
+2018-11-02 21:08:31.881 ------------------------------------------------------
+2018-11-02 21:08:31.881 SoftEther VPN Client Version 4.28 Build 9669   (English)
+2018-11-02 21:08:31.881 Compiled 2018/09/11 12:23:27 by yagi at pc33
+2018-11-02 21:08:31.881 The SoftEther VPN Client Engine has been started.
+2018-11-02 21:08:31.881 Loading configuration file...
+2018-11-02 21:08:31.891 Monitoring the directory "/home/volumio/vpnclient". If the amount of available free disk space becomes less than 100.00 MBytes, the backup files for log files and configurations that are saved on the sub-directories of this directory will be automatically deleted in the order of oldest first. The amount of free disk space that determines when to start deletion can be modified by changing the "AutoDeleteCheckDiskFreeSpaceMin" item in the configuration file.
+2018-11-02 21:08:31.891 The configuration file has been loaded.
+2018-11-02 21:09:19.370 The SoftEther VPN Client Engine has been shut down.
+2018-11-02 21:09:19.370 ------------------------------------------------------
+2018-11-02 21:10:03.458 ------------------------------------------------------
+2018-11-02 21:10:03.458 SoftEther VPN Client Version 4.28 Build 9669   (English)
+2018-11-02 21:10:03.458 Compiled 2018/09/11 12:23:27 by yagi at pc33
+2018-11-02 21:10:03.458 The SoftEther VPN Client Engine has been started.
+2018-11-02 21:10:03.458 Loading configuration file...
+2018-11-02 21:10:03.468 Monitoring the directory "/home/volumio/vpnclient". If the amount of available free disk space becomes less than 100.00 MBytes, the backup files for log files and configurations that are saved on the sub-directories of this directory will be automatically deleted in the order of oldest first. The amount of free disk space that determines when to start deletion can be modified by changing the "AutoDeleteCheckDiskFreeSpaceMin" item in the configuration file.
+2018-11-02 21:10:03.468 The configuration file has been loaded.
+2018-11-02 21:12:35.736 Connection processing for VPN Connection Setting "Harley" has started.
+2018-11-02 21:12:35.736 VPN Connection Setting "Harley": Connection operation starting (this is now 1 times).
+2018-11-02 21:12:40.760 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:12:55.759 VPN Connection Setting "Harley": Connection operation starting (this is now 2 times).
+2018-11-02 21:13:00.807 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:13:15.811 VPN Connection Setting "Harley": Connection operation starting (this is now 3 times).
+2018-11-02 21:13:20.828 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:13:35.831 VPN Connection Setting "Harley": Connection operation starting (this is now 4 times).
+2018-11-02 21:13:40.851 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:13:55.852 VPN Connection Setting "Harley": Connection operation starting (this is now 5 times).
+2018-11-02 21:14:00.873 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:14:15.881 VPN Connection Setting "Harley": Connection operation starting (this is now 6 times).
+2018-11-02 21:14:20.901 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:14:35.895 VPN Connection Setting "Harley": Connection operation starting (this is now 7 times).
+2018-11-02 21:14:40.934 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:14:55.929 VPN Connection Setting "Harley": Connection operation starting (this is now 8 times).
+2018-11-02 21:15:00.964 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:15:15.966 VPN Connection Setting "Harley": Connection operation starting (this is now 9 times).
+2018-11-02 21:15:20.966 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:15:35.970 VPN Connection Setting "Harley": Connection operation starting (this is now 10 times).
+2018-11-02 21:15:41.019 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:15:56.012 VPN Connection Setting "Harley": Connection operation starting (this is now 11 times).
+2018-11-02 21:16:01.069 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:16:16.073 VPN Connection Setting "Harley": Connection operation starting (this is now 12 times).
+2018-11-02 21:16:21.118 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:16:36.126 VPN Connection Setting "Harley": Connection operation starting (this is now 13 times).
+2018-11-02 21:16:41.148 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:16:56.117 Disconnecting the VPN Connection Setting "Harley".
+2018-11-02 21:17:00.300 Connection processing for VPN Connection Setting "Harley" has started.
+2018-11-02 21:17:00.300 VPN Connection Setting "Harley": Connection operation starting (this is now 1 times).
+2018-11-02 21:17:05.325 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:17:20.320 VPN Connection Setting "Harley": Connection operation starting (this is now 2 times).
+2018-11-02 21:17:25.363 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:17:40.370 VPN Connection Setting "Harley": Connection operation starting (this is now 3 times).
+2018-11-02 21:17:45.397 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:18:00.392 VPN Connection Setting "Harley": Connection operation starting (this is now 4 times).
+2018-11-02 21:18:05.416 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:18:20.409 VPN Connection Setting "Harley": Connection operation starting (this is now 5 times).
+2018-11-02 21:18:25.448 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:18:40.455 VPN Connection Setting "Harley": Connection operation starting (this is now 6 times).
+2018-11-02 21:18:45.479 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:19:00.482 VPN Connection Setting "Harley": Connection operation starting (this is now 7 times).
+2018-11-02 21:19:05.498 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: Connection to the server failed. Check network connection and make sure that address and port number of destination server are correct. (code 1)
+2018-11-02 21:19:20.498 VPN Connection Setting "Harley": Connection operation starting (this is now 8 times).
+2018-11-02 21:19:20.812 VPN Connection Setting "Harley": Now connected. Session name: "SID-AXIOMAIR-1"
+2018-11-02 21:25:10.797 Disconnecting the VPN Connection Setting "Harley".
+2018-11-02 21:25:10.807 VPN Connection Setting "Harley": The connection has been either disconnected or it failed. Cause: The command has been canceled by user. (code 6)
+2018-11-02 21:25:55.862 The SoftEther VPN Client Engine has been shut down.
+2018-11-02 21:25:55.862 ------------------------------------------------------
+2018-11-02 21:25:59.454 ------------------------------------------------------
+2018-11-02 21:25:59.454 SoftEther VPN Client Version 4.28 Build 9669   (English)
+2018-11-02 21:25:59.454 Compiled 2018/09/11 12:23:27 by yagi at pc33
+2018-11-02 21:25:59.454 The SoftEther VPN Client Engine has been started.
+2018-11-02 21:25:59.454 Loading configuration file...
+2018-11-02 21:25:59.464 Monitoring the directory "/home/volumio/vpnclient". If the amount of available free disk space becomes less than 100.00 MBytes, the backup files for log files and configurations that are saved on the sub-directories of this directory will be automatically deleted in the order of oldest first. The amount of free disk space that determines when to start deletion can be modified by changing the "AutoDeleteCheckDiskFreeSpaceMin" item in the configuration file.
+2018-11-02 21:25:59.464 The configuration file has been loaded.
+2018-11-02 21:26:09.504 Connection processing for VPN Connection Setting "Harley" has started.
+2018-11-02 21:26:09.504 VPN Connection Setting "Harley": Connection operation starting (this is now 1 times).
+2018-11-02 21:26:09.819 VPN Connection Setting "Harley": Now connected. Session name: "SID-AXIOMAIR-3"

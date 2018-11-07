@@ -1,0 +1,15 @@
+[Unit]
+Description=A2DP Playback
+After=bt-agent.service bluealsa.service syslog.service
+Requires=bluealsa.service bt-agent.service
+
+[Service]
+ExecStartPre=/bin/sleep 3
+ExecStart=/usr/bin/bluealsa-aplay -d volume --profile-a2dp 00:00:00:00:00:00
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=A2DP-Playback
+User=root
+
+[Install]
+WantedBy=multi-user.target

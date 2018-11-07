@@ -47,7 +47,10 @@ wlan0)
 	systemctl stop hotspot
 	cable="$(grep "" /sys/class/net/eth0/carrier)"
  	if [ $cable == "0" ]; then
- 		systemctl restart wireless &
+ 		if ! (systemctl -q is-active wireless.service)
+		then
+			systemctl start wireless
+		fi
 	fi
 	;;
     probe)
