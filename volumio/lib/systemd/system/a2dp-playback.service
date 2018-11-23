@@ -2,10 +2,11 @@
 Description=A2DP Playback
 After=bt-agent.service bluealsa.service syslog.service
 Requires=bluealsa.service bt-agent.service
+BindsTo=sys-subsystem-bluetooth-devices-hci0.device
 
 [Service]
 ExecStartPre=/bin/sleep 3
-ExecStart=/usr/bin/bluealsa-aplay -d volume --profile-a2dp 00:00:00:00:00:00
+ExecStart=/usr/bin/bluealsa-aplay -d btvolume --profile-a2dp 00:00:00:00:00:00
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=A2DP-Playback
