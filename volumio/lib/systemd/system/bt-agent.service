@@ -2,6 +2,7 @@
 Description=BT-Agent
 Requires=bluetooth.service
 After=bluetooth.service
+BindsTo=sys-subsystem-bluetooth-devices-hci0.device
 
 [Service]
 Type=simple

@@ -324,6 +324,11 @@ systemctl disable wac.service
 echo "Preventing upmpdcli at boot"
 systemctl disable upmpdcli.service
 
+echo "Bluetooth enabled"
+systemctl enable bluetooth
+systemctl enable bluealsa
+systemctl enable bt-agent
+systemctl enable a2dp-playback
 
 echo "Preventing un-needed dhcp servers to start automatically"
 systemctl disable isc-dhcp-server.service

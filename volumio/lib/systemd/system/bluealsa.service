@@ -1,10 +1,22 @@
 [Unit]
-Description=BluezALSA proxy
-Requires=bluetooth.service
-After=bluetooth.service
+Description=Bluetooth service
+Documentation=man:bluetoothd(8)
+ConditionPathIsDirectory=/sys/class/bluetooth
+BindsTo=sys-subsystem-bluetooth-devices-hci0.device
 
 [Service]
-Type=simple
-User=root
-ExecStartPre=/usr/local/bin/bt-set-agent
-ExecStart=/usr/bin/bluealsa -p a2dp-sink
+Type=dbus
+BusName=org.bluez
+ExecStart=/usr/lib/bluetooth/bluetoothd
+NotifyAccess=main
+#WatchdogSec=10
+#Restart=on-failure
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+LimitNPROC=1
+ProtectHome=true
+ProtectSystem=full
+ExecStopPost=/usr/sbin/service airplay restart
+
+[Install]
+WantedBy=bluetooth.target
+Alias=dbus-org.bluez.service
