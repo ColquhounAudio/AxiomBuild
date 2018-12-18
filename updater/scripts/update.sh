@@ -8,17 +8,19 @@ if md5sum --status -c verify.hash; then
 	    echo "Installing new image"
 	    mv ../volumio_update.sqsh ../volumio_current.sqsh
 	    echo "Verifying final image"
-	    
+	    sync    
 	    if md5sum --status -c final.hash; then
 		    exit 0
 	    else
 		    echo "Update failed. Folling back to previous image"
 		    mv ../volumio_fallback.sqsh ../volumio_current.sqsh
+		    sync
 		    exit 1
 	    fi
 
 else
 	    # The MD5 sum didn't match
 	    echo "Hash verify failed. Aborting."
+	    sync
 	    exit 1
 fi

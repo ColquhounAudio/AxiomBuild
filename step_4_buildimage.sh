@@ -4,7 +4,7 @@
 
 BUILDDATE=$(date -I)
 
-IMG_FILE="AxiomAir${VERSION}-${BUILDDATE}-pi.img"
+IMG_FILE="AxiomAirV1-${VERSION}-${BUILDDATE}-pi.img"
 
 
 echo "Creating Image Bed"

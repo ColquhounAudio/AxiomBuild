@@ -68,5 +68,7 @@ echo "Disabling firststart service"
 systemctl disable firststart.service
 
 echo "Finalizing"
+/usr/bin/amixer -M set -c 0 "Digital" 50%
+/usr/sbin/alsactl store
 sync
 reboot

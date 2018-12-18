@@ -148,7 +148,7 @@ dtparam=i2c_arm=on
 #disable_splash=1
 hdmi_force_hotplug=1
 # add overlay for mcp23017 GPIO expander
-dtoverlay=mcp23017,gpiopin=27,addr=0x25
+# dtoverlay=mcp23017,gpiopin=27,addr=0x25
 
 #20180606-Emre Ozkan-added overlay for applechip
 dtoverlay=i2c-rtc,pcf2127
@@ -160,7 +160,7 @@ dtparam=pwr_led_trigger=none
 dtparam=pwr_led_activelow=off
 
 #### Volumio i2s setting below: do not alter ####
-dtoverlay=hifiberry-dacplus
+dtoverlay=hifiberry-dac
 " >> /boot/config.txt
 
 echo "Writing cmdline.txt file"
@@ -212,7 +212,9 @@ sed -i 's/KERNEL==\"eth/DRIVERS!=\"smsc95xx\", DRIVERS!=\"lan78xx\", &/' /etc/ud
 echo "Installing Wireless drivers for 8188eu, 8192eu, 8812au, mt7610, and mt7612. Many thanks MrEngman"
 ### We cache the drivers archives upon first request on Volumio server, to relieve stress on mr engmans
 #MRENGMAN_REPO="http://wifi-drivers.volumio.org/wifi-drivers"
-MRENGMAN_REPO="http://downloads.fars-robotics.net/wifi-drivers"
+#MRENGMAN_REPO="http://downloads.fars-robotics.net/wifi-drivers"
+MRENGMAN_REPO="https://s3.amazonaws.com/axiom-air-install-files/Common"
+
 mkdir wifi
 cd wifi
 
