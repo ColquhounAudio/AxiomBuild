@@ -97,6 +97,9 @@ cp volumio/etc/bluetooth/* build/$BUILD/root/etc/bluetooth/
 cp volumio/etc/bt-pins.cfg build/$BUILD/root/etc/
 #Axiom Signature
 cp volumio/etc/axiom-image-signature-public.pem build/$BUILD/root/etc/
+#rc.local for default volume levels at boot
+cp -rp volumio/etc/rc.local build/$BUILD/root/etc/
+
 echo 'Done Copying Custom Volumio System Files'
 
 chroot "build/$BUILD/root" /bin/bash -x <<'EOF'

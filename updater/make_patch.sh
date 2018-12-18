@@ -26,7 +26,7 @@ fi
 
 echo "Creating delta file..."
 mkdir update
-xdelta3 -e -s $PREVIOUS $NEXT update/delta.patch
+xdelta3 -e -9 -s $PREVIOUS $NEXT update/delta.patch
 
 echo "Calculating hashes..."
 cd update
