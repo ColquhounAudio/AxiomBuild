@@ -358,7 +358,25 @@ echo "Alsa tuning"
 
 echo "Creating Alsa state file"
 touch /var/lib/alsa/asound.state
-echo '#' > /var/lib/alsa/asound.state
+echo "state.sndrpihifiberry {
+	control.1 {
+		iface MIXER
+		name Digital
+		value.0 50
+		value.1 50
+		comment {
+		access 'read write user'
+		type INTEGER
+		count 2
+		range '0 - 99'
+		tlv '0000000100000008ffffe4a800000046'
+		dbmin -7000
+		dbmax -70
+		dbvalue.0 -3500
+		dbvalue.1 -3500
+		}
+	}
+}" > /var/lib/alsa/asound.state
 chmod 777 /var/lib/alsa/asound.state
 
 echo "Fixing UPNP L16 Playback issue"
