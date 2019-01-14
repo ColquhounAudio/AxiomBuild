@@ -99,6 +99,10 @@ cp volumio/etc/bt-pins.cfg build/$BUILD/root/etc/
 cp volumio/etc/axiom-image-signature-public.pem build/$BUILD/root/etc/
 #rc.local for default volume levels at boot
 cp -rp volumio/etc/rc.local build/$BUILD/root/etc/
+#Add missing LD 
+mkdir -p build/$BUILD/root/etc/ld.so.conf.d/
+echo "/opt/vc/lib" > build/$BUILD/root/etc/ld.so.conf.d/opt.conf
+
 
 echo 'Done Copying Custom Volumio System Files'
 
