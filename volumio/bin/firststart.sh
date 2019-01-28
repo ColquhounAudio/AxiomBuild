@@ -35,8 +35,10 @@ echo "Setting up UI settings for V1/V2"
 if [ ! -f /sys/class/gpio/gpio508/value ]
 then
         cp /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json.default
+        cp /boot/config.txt /boot/config.txt.default
         sed -i -e 's/\"opticalInput\": true/\"opticalInput\": false/g' /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json
-        sed -i -e 's/bluetooth\": true/\"bluetooth\": false/g' /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json
+        sed -i -e 's/\"bluetooth\": true/\"bluetooth\": false/g' /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json
+        sed -i -e 's/dtoverlay=hifiberry-dacplus/dtoverlay=hifiberry-dac/g' /boot/config.txt
 fi
 
 
