@@ -31,6 +31,14 @@ cat /volumio/app/plugins/system_controller/volumiodiscovery/config.json.tmpl | s
 echo "127.0.0.1 localhost $NEW_HOSTNAME" > /etc/hosts
 /bin/hostname -F /etc/hostname
 
+echo "Setting up UI settings for V1/V2"
+if [ ! -f /sys/class/gpio/gpio508/value ]
+then
+        cp /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json.default
+        sed -i -e 's/\"opticalInput\": true/\"opticalInput\": false/g' /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json
+        sed -i -e 's/bluetooth\": true/\"bluetooth\": false/g' /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json
+fi
+
 
 echo "Restarting early start services"
 
