@@ -1,10 +1,9 @@
 <deviceType>urn:schemas-upnp-org:device:MediaRenderer:1</deviceType>
 <friendlyName>@FRIENDLYNAME@</friendlyName>
-<manufacturer>Axiom Audio</manufacturer>
-<manufacturerURL>http://axiomaudio.com/</manufacturerURL>
-<modelDescription>Axiom Air</modelDescription>
-<modelName>AxiomAir</modelName>
+<manufacturer>Bryston</manufacturer>
+<manufacturerURL>http://bryston.com/</manufacturerURL>
+<modelDescription>BryFi</modelDescription>
+<modelName>BryFi</modelName>
 <modelNumber>1.0</modelNumber>
-<modelURL>https://axiomaudio.com/</modelURL>
+<modelURL>http://bryston.com/</modelURL>
 <serialNumber>42</serialNumber>
-
