@@ -152,13 +152,11 @@ dtoverlay=mcp23017,gpiopin=27,addr=0x25
 
 #20180606-Emre Ozkan-added overlay for applechip
 dtoverlay=i2c-rtc,pcf2127
-
 ##20180621-Emre Ozkan powerled and activity led turned off
 dtparam=act_led_trigger=none
 dtparam=act_led_activelow=off
 dtparam=pwr_led_trigger=none
 dtparam=pwr_led_activelow=off
-
 #### Volumio i2s setting below: do not alter ####
 dtoverlay=hifiberry-dacplus
 " >> /boot/config.txt
