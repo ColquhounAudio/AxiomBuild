@@ -331,6 +331,11 @@ systemctl enable bluealsa
 systemctl enable bt-agent
 systemctl enable a2dp-playback
 
+echo "Lirc Devinput enabled"
+systemctl enable lircd-devinput
+systemctl enable irexec-devinput
+
+
 echo "Preventing un-needed dhcp servers to start automatically"
 systemctl disable isc-dhcp-server.service
 #systemctl disable dhcpd.service
