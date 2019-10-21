@@ -3,6 +3,8 @@
 #20180604-Emre Ozkan-Axiom led setup configuration script
 
 #set the blue led out
+gpio -g mode 4 in
+gpio -g mode 4 up
 gpio -g mode 26 out
 
 while :
@@ -45,8 +47,5 @@ do
                 fi
 
         fi
-        if [ -f /sys/class/gpio/gpio508/value ]
-        then
-                echo "0" > /sys/class/gpio/gpio508/value
-        fi
+	sleep 1
 done
