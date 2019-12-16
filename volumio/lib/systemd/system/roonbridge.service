@@ -1,0 +1,16 @@
+[Unit]
+Description=Roon Bridge
+After=wireless.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/bin/bash /usr/local/RoonBridge/start.sh
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+

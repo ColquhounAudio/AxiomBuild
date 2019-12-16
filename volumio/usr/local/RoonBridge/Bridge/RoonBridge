@@ -1,0 +1,83 @@
+#!/bin/sh
+
+# NOTE: this script must only use really basic shell features as it must be able to run on limited
+# busybox installs (synology, etc)
+
+SCRIPT="`basename "$0"`"
+FULLPATH="$0"
+echo "$0" | grep -q ^/
+if [ $? -ne 0 ]; then FULLPATH="`pwd`/$0"; fi
+
+ROOTPATH=
+OIFS="$IFS"
+IFS=/
+for i in `echo "$FULLPATH"`; do
+    if [ "x$i" != "x" ]; then
+        ROOTPATH="$ROOTPATH/$i"
+        if [ -d "$ROOTPATH/RoonMono" ]; then break; fi
+    fi
+done
+IFS="$OIFS"
+
+MONO_DIR="$ROOTPATH/RoonMono"
+export MONO_DIR
+PATH="$MONO_DIR/bin":"$PATH"
+export PATH
+LD_LIBRARY_PATH="$MONO_DIR/lib:$LD_LIBRARY_PATH:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH
+FONTCONFIG_PATH="$MONO_DIR/etc/fonts"
+export FONTCONFIG_PATH
+MONO_DEBUG=no-gdb-backtrace
+export MONO_DEBUG
+MONO_GC_PARAMS=major=marksweep-conc,nursery-size=16m
+export MONO_GC_PARAMS
+MONO_TLS_PROVIDER=btls
+export MONO_TLS_PROVIDER
+MONO_ENABLE_BLOCKING_TRANSITION=1
+export MONO_ENABLE_BLOCKING_TRANSITION
+
+# boost ulimit
+ulimit -n 8192
+
+if [ -d "$ROOTPATH/.update" ]; then
+    doerror() {
+        echo ERROR: $1
+        exit 1
+    }
+
+    #echo Removing any old backup install...
+    rm -rf "$ROOTPATH/.previous"
+
+    #echo Moving old install to "$ROOTPATH/.previous"
+    mkdir "$ROOTPATH/.previous" || doerror "failed to mkdir $ROOTPATH/.previous"
+    mv "$ROOTPATH/"[A-Za-z0-9_]* "$ROOTPATH/.previous/" || doerror "failed to move old install to $ROOTPATH/.previous/"
+
+    #echo Moving new install to "$ROOTPATH/"
+    mv "$ROOTPATH/.update/$SCRIPT/"* "$ROOTPATH/"
+    if [ $? != 0 ]; then
+        rm -rf "$ROOTPATH/"[A-Za-z0-9_]*
+        mv "$ROOTPATH/.previous/"* "$ROOTPATH/"
+        rm -rf "$ROOTPATH/.previous/"
+        doerror "failed to move update contents to $ROOTPATH/"
+    fi
+
+    rm -rf "$ROOTPATH/.update/"
+
+    for i in $(ps Auww -o pid,args | grep RAATServer.exe | grep -v grep | awk '{print $1}'); do kill -9 $i; done
+    for i in $(ps Auww -o pid,args | grep RoonBridgeHelper.exe | grep -v grep | awk '{print $1}'); do kill -9 $i; done
+    for i in $(ps Auww -o pid,args | grep roon_storaged | grep -v grep | awk '{print $1}'); do kill -9 $i; done
+
+    exec "$0" "$@"
+fi
+
+# we don't use stdin, so close it up.
+exec 0</dev/null
+exec 0>/dev/null
+
+# fire up the app
+cd "$ROOTPATH/Bridge"
+if [ -x /bin/bash ]; then
+    exec /bin/bash -c "exec -a $SCRIPT \"$MONO_DIR/bin/mono-sgen\" --debug --gc=sgen --server $SCRIPT.exe $@"
+else
+    exec "$MONO_DIR/bin/mono-sgen" --debug --gc=sgen --server $SCRIPT.exe "$@"
+fi

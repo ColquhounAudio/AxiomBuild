@@ -335,6 +335,8 @@ echo "Lirc Devinput enabled"
 systemctl enable lircd-devinput
 systemctl enable irexec-devinput
 
+echo "Roon enabled"
+systemctl enable roonbridge
 
 echo "Preventing un-needed dhcp servers to start automatically"
 systemctl disable isc-dhcp-server.service
