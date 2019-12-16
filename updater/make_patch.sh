@@ -1,5 +1,5 @@
 #!/bin/sh
-
+rm -rf update
 
 if [ $# -lt 3 ]; 
 then

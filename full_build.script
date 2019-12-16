@@ -1,0 +1,7 @@
+./step_1_multistrap.sh
+sync
+./step_2_volumiodeploy.sh
+sync
+./step_3_volumioconfig.sh
+sync
+./step_4_buildimage.sh

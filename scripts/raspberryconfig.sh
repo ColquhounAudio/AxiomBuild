@@ -159,6 +159,7 @@ dtparam=pwr_led_trigger=none
 dtparam=pwr_led_activelow=off
 #### Volumio i2s setting below: do not alter ####
 dtoverlay=hifiberry-dacplus
+dtoverlay=gpio-ir,gpio_pin=9,gpio_pull=up
 " >> /boot/config.txt
 
 echo "Writing cmdline.txt file"

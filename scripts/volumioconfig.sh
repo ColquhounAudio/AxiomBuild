@@ -300,6 +300,7 @@ echo "Disabling SSH by default"
 systemctl disable ssh.service
 echo "Enable AirplayD by default"
 systemctl enable airplay.service
+systemctl disable airplay2.service
 
 echo "Enable Axiom IO services"
 systemctl enable axiom_hwconfig.service
@@ -329,6 +330,13 @@ systemctl enable bluetooth
 systemctl enable bluealsa
 systemctl enable bt-agent
 systemctl enable a2dp-playback
+
+echo "Lirc Devinput enabled"
+systemctl enable lircd-devinput
+systemctl enable irexec-devinput
+
+echo "Roon enabled"
+systemctl enable roonbridge
 
 echo "Preventing un-needed dhcp servers to start automatically"
 systemctl disable isc-dhcp-server.service

@@ -90,6 +90,8 @@ chmod a+x build/$BUILD/root/bin/volumio_cpu_tweak
 cp volumio/etc/default/ifplugd build/$BUILD/root/etc/default/ifplugd
 #Airplay config files
 cp -r volumio/etc/airplayd build/$BUILD/root/etc/
+#Lirc config files
+cp -rp volumio/etc/lirc build/$BUILD/root/etc/
 #Alsa config
 cp volumio/etc/asound.conf build/$BUILD/root/etc/
 #Bluetooth config
