@@ -11,9 +11,9 @@ Nice=-19
 Restart=always
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=volumio
-User=volumio
-Group=volumio
+SyslogIdentifier=root
+User=root
+Group=root
 RestartSec=2
 
 [Install]

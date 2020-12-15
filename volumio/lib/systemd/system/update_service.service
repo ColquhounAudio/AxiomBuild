@@ -4,7 +4,7 @@ Wants=volumio.service
 
 
 [Service]
-ExecStart=/usr/local/bin/update_service https://s3.amazonaws.com/axiom-air-install-files/BryFiV2/updates/
+ExecStart=/usr/local/bin/update_service https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/updates/
 Restart=always
 StandardOutput=syslog
 StandardError=syslog

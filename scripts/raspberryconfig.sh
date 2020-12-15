@@ -149,7 +149,6 @@ dtparam=i2c_arm=on
 hdmi_force_hotplug=1
 # add overlay for mcp23017 GPIO expander
 dtoverlay=mcp23017,gpiopin=27,addr=0x25
-
 #20180606-Emre Ozkan-added overlay for applechip
 dtoverlay=i2c-rtc,pcf2127
 ##20180621-Emre Ozkan powerled and activity led turned off
