@@ -2,6 +2,8 @@
 if md5sum --status -c verify.hash; then
 	    # The MD5 sum matched
 	    echo "Applying update"
+	    rm -f ../*.sha256
+	    rm -f ../*.tar.gz
 	    xdelta3 -d -s ../volumio_current.sqsh ./delta.patch ../volumio_update.sqsh
 	    echo "Backing up previous image"
 	    mv ../volumio_current.sqsh ../volumio_fallback.sqsh

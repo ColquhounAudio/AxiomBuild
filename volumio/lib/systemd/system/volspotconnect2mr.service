@@ -1,0 +1,18 @@
+[Unit]
+Description=Volspotconnect2MR Daemon
+After=syslog.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /volumio/app/plugins/music_service/volspotconnect2/startconnectmr.sh
+Restart=always
+RestartSec=2
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=root
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+
