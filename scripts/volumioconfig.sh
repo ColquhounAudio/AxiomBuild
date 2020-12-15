@@ -98,7 +98,7 @@ volumio ALL=(ALL) NOPASSWD: /bin/sh /volumio/app/plugins/system_controller/volum
 EOF
 chmod 0440 ${SUDOERS_FILE}
 
-echo AxiomAir-default > /etc/hostname
+echo BryFi-default > /etc/hostname
 chmod 777 /etc/hostname
 chmod 777 /etc/hosts
 
@@ -210,7 +210,7 @@ chmod a+x /usr/local/sbin/volumio-init-updater
 #  chmod a+x /usr/sbin/hostapd-edimax
 #
 echo "interface=wlan0
-ssid=AxiomAir
+ssid=BryFi
 channel=4
 driver=rtl871xdrv
 hw_mode=g
@@ -409,7 +409,7 @@ echo "net.ipv6.conf.lo.disable_ipv6 = 1" | tee -a /etc/sysctl.conf
 
 echo "Configuring hostapd"
 echo "interface=wlan0
-ssid=AxiomAir
+ssid=BryFi
 channel=4
 driver=nl80211
 hw_mode=g
