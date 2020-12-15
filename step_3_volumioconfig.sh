@@ -120,6 +120,7 @@ umount -l "build/$BUILD/root/sys"
 #Mpd
 cp volumio/etc/mpd.conf build/$BUILD/root/etc/mpd.conf
 cp volumio/etc/default/mpd build/$BUILD/root/etc/default/
+cp volumio/etc/default/snapserver build/$BUILD/root/etc/default/snapserver
 chmod 777 build/$BUILD/root/etc/mpd.conf
 chown -R 112:29 build/$BUILD/root/var/run/mpd
 chmod 777 build/$BUILD/root/var/run/mpd
