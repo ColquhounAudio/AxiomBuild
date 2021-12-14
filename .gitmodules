@@ -1,0 +1,3 @@
+[submodule "volumio/usr/local/AxiomUpdater"]
+	path = volumio/usr/local/AxiomUpdater
+	url = https://github.com/ColquhounAudio/AxiomUpdater
