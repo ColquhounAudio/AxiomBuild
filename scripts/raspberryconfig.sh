@@ -37,64 +37,60 @@ options snd-usb-audio index=5
 options snd_bcm2835 index=0" >> /etc/modprobe.d/alsa-base.conf
 
 echo "Adding Raspberrypi.org Repo"
-echo "deb http://archive.raspberrypi.org/debian/ stretch main ui
-deb-src http://archive.raspberrypi.org/debian/ stretch main ui
+echo "deb http://archive.raspberrypi.org/debian/ buster main ui
+deb-src http://archive.raspberrypi.org/debian/ buster main ui
 " >> /etc/apt/sources.list.d/raspi.list
+echo "deb http://deb.debian.org/debian buster-backports main non-free
+" >> /etc/apt/sources.list.d/backports.list
+
 
 echo "Adding Raspberrypi.org Repo Key"
 wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O - | sudo apt-key add -
 
 echo "Installing R-pi specific binaries"
 apt-get update
-apt-get -y install binutils i2c-tools
+apt-get -y install binutils i2c-tools smbclient samba libraspberrypi-bin gpiod
 # Commenting raspi-config, not sure it is really needed
 #apt-get -y install libnewt0.52 whiptail triggerhappy lua5.1 locales
 
 echo "Installing Kernel from Rpi-Update"
-sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/ColquhounAudio/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+# sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/ColquhounAudio/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+#sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/raspberrypi/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+
 touch /boot/start.elf
 mkdir /lib/modules
 
 
-KERNEL_VERSION="4.14.61"
+KERNEL_VERSION="5.10.63"
 
 case $KERNEL_VERSION in
-    "4.4.9")
-      KERNEL_REV="884"
-      KERNEL_COMMIT="15ffab5493d74b12194e6bfc5bbb1c0f71140155"
-      FIRMWARE_COMMIT="9108b7f712f78cbefe45891bfa852d9347989529"
-      ;; 
-    "4.9.65")
-      KERNEL_REV="1056"
-      KERNEL_COMMIT="e4b56bb7efe47319e9478cfc577647e51c48e909"
-      FIRMWARE_COMMIT=$KERNEL_COMMIT
-      ;; 
-    "4.9.80")
-      KERNEL_REV="1098"
-      KERNEL_COMMIT="936a8dc3a605c20058fbb23672d6b47bca77b0d5"
-      FIRMWARE_COMMIT=$KERNEL_COMMIT
-      ;;
-    "4.14.42")
-      KERNEL_REV="1114"
-      KERNEL_COMMIT="d68045945570b418ac48830374366613de3278f3"
-      FIRMWARE_COMMIT=$KERNEL_COMMIT
-      ;;
     "4.14.61")
       KERNEL_REV="1133"
       KERNEL_COMMIT="e16b6270dfa675f2a99545e611d2e834dbc2a064"
       FIRMWARE_COMMIT=$KERNEL_COMMIT
       ;;
-
+    "5.10.63")
+      KERNEL_REV="1450"
+      KERNEL_COMMIT="64132d67d3e083076661628203a02d27bf13203c"
+      FIRMWARE_COMMIT=$KERNEL_COMMIT
+      ;;
 esac
 
 # using rpi-update relevant to defined kernel version
-echo y | SKIP_BACKUP=1 rpi-update $KERNEL_COMMIT
+echo y | CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt SKIP_BACKUP=1 WANT_PI4=1 SKIP_CHECK_PARTITION=1 UPDATE_SELF=0 rpi-update $KERNEL_COMMIT
 
 echo "Getting actual kernel revision with firmware revision backup"
 cp /boot/.firmware_revision /boot/.firmware_revision_kernel
 
 echo "Updating bootloader files *.elf *.dat *.bin"
-echo y | SKIP_KERNEL=1 rpi-update $FIRMWARE_COMMIT
+echo y | CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt SKIP_KERNEL=1 WANT_PI4=1 SKIP_CHECK_PARTITION=1 UPDATE_SELF=0 rpi-update $FIRMWARE_COMMIT
+
+if [ -d "/lib/modules/${KERNEL_VERSION}-v8+" ]; then
+	echo "Removing v8+ Kernels"
+	rm /boot/kernel8.img
+	rm -rf "/lib/modules/${KERNEL_VERSION}-v8+"
+fi
+
 
 echo "Blocking unwanted libraspberrypi0, raspberrypi-bootloader, raspberrypi-kernel installs"
 # these packages critically update kernel & firmware files and break Volumio
@@ -107,33 +103,22 @@ Package: raspberrypi-kernel
 Pin: release *
 Pin-Priority: -1" > /etc/apt/preferences
 apt-mark hold raspberrypi-kernel raspberrypi-bootloader   #libraspberrypi0 depends on raspberrypi-bootloader
+apt-mark hold nodejs
 
 echo "Adding PI3 & PiZero W Wireless, PI WIFI Wireless dongle, ralink mt7601u & few others firmware upgraging to Pi Foundations packages"
-apt-get install -y --only-upgrade firmware-atheros firmware-ralink firmware-realtek firmware-brcm80211
-
-# Temporary brcm firmware fix solution until we use Stretch
-#wget http://repo.volumio.org/Volumio2/Firmwares/firmware-brcm80211_20161130-3%2Brpt3_all.deb
-#dpkg -i firmware-brcm80211_20161130-3+rpt3_all.deb
-#rm firmware-brcm80211_20161130-3+rpt3_all.deb
-
-#if [ "$KERNEL_VERSION" = "4.4.9" ]; then       # probably won't be necessary in future kernels 
-#echo "Adding initial support for PiZero W wireless on 4.4.9 kernel"
-#wget -P /boot/. https://github.com/Hexxeh/rpi-firmware/raw/$FIRMWARE_COMMIT/bcm2708-rpi-0-w.dtb
-#echo "Adding support for dtoverlay=pi3-disable-wifi on 4.4.9 kernel"
-#wget -P /boot/overlays/. https://github.com/Hexxeh/rpi-firmware/raw/$FIRMWARE_COMMIT/overlays/pi3-disable-wifi.dtbo
-#fi
+apt-get install -y --allow-downgrades firmware-atheros/buster-backports firmware-realtek/buster-backports firmware-brcm80211/buster-backports
 
 #echo "Adding raspi-config"
 #wget -P /raspi http://archive.raspberrypi.org/debian/pool/main/r/raspi-config/raspi-config_20151019_all.deb
 #dpkg -i /raspi/raspi-config_20151019_all.deb
 #rm -Rf /raspi
 
-echo "Installing WiringPi from Raspberrypi.org Repo"
-apt-get -y install wiringpi
+#echo "Installing WiringPi from Raspberrypi.org Repo"
+#apt-get -y install wiringpi
 
-echo "Configuring boot splash"
-apt-get -y install plymouth plymouth-themes
-plymouth-set-default-theme volumio
+#echo "Configuring boot splash"
+#apt-get -y install plymouth plymouth-themes
+#plymouth-set-default-theme volumio
 
 echo "Removing unneeded binaries"
 apt-get -y remove binutils
@@ -162,7 +147,7 @@ dtoverlay=gpio-ir,gpio_pin=9,gpio_pull=up
 " >> /boot/config.txt
 
 echo "Writing cmdline.txt file"
-echo "splash quiet plymouth.ignore-serial-consoles dwc_otg.fiq_enable=1 dwc_otg.fiq_fsm_enable=1 dwc_otg.fiq_fsm_mask=0xF dwc_otg.nak_holdoff=1 console=serial0,115200 kgdboc=serial0,115200 console=tty1 imgpart=/dev/mmcblk0p2 imgfile=/volumio_current.sqsh elevator=noop rootwait bootdelay=5 logo.nologo vt.global_cursor_default=0 loglevel=0 net.ifnames=0" >> /boot/cmdline.txt
+echo "dwc_otg.fiq_enable=1 dwc_otg.fiq_fsm_enable=1 dwc_otg.fiq_fsm_mask=0xF dwc_otg.nak_holdoff=1 console=serial0,115200 kgdboc=serial0,115200 console=tty1 imgpart=/dev/mmcblk0p2 imgfile=/volumio_current.sqsh elevator=noop rootwait bootdelay=5 logo.nologo vt.global_cursor_default=0 loglevel=0 net.ifnames=0" >> /boot/cmdline.txt
 
 echo "adding gpio & spi group and permissions"
 groupadd -f --system gpio
@@ -171,7 +156,7 @@ groupadd -f --system spi
 echo "adding volumio to gpio group and al"
 usermod -a -G gpio,i2c,spi,input volumio
 
-echo "Installing raspberrypi-sys-mods System customizations (& removing few bits)"
+echo "Installing raspberrypi-sys-mods System customizations"
 apt-get -y install raspberrypi-sys-mods
 rm /etc/sudoers.d/010_pi-nopasswd
 unlink /etc/systemd/system/multi-user.target.wants/sshswitch.service
@@ -213,28 +198,28 @@ echo "Installing Wireless drivers for 8188eu, 8192eu, 8812au, mt7610, and mt7612
 #MRENGMAN_REPO="http://downloads.fars-robotics.net/wifi-drivers"
 MRENGMAN_REPO="https://s3.amazonaws.com/axiom-air-install-files/Common"
 
-mkdir wifi
-cd wifi
-
-for DRIVER in 8188eu 8192eu 8812au mt7610 mt7612
-do
-  echo "WIFI: $DRIVER for armv7"
-  wget $MRENGMAN_REPO/$DRIVER-drivers/$DRIVER-$KERNEL_VERSION-v7-$KERNEL_REV.tar.gz
-  tar xf $DRIVER-$KERNEL_VERSION-v7-$KERNEL_REV.tar.gz
-  sed -i 's/^kernel=.*$/kernel='"$KERNEL_VERSION"'-v7+/' install.sh
-  sh install.sh
-  rm -rf *
-
-  echo "WIFI: $DRIVER for armv6"
-  wget $MRENGMAN_REPO/$DRIVER-drivers/$DRIVER-$KERNEL_VERSION-$KERNEL_REV.tar.gz
-  tar xf $DRIVER-$KERNEL_VERSION-$KERNEL_REV.tar.gz
-  sed -i 's/^kernel=.*$/kernel='"$KERNEL_VERSION"'+/' install.sh
-  sh install.sh
-  rm -rf *
-done
-
-cd ..
-rm -rf wifi
+#mkdir wifi
+#cd wifi
+#
+#for DRIVER in 8188eu 8192eu 8812au mt7610 mt7612
+#do
+#  echo "WIFI: $DRIVER for armv7"
+#  wget $MRENGMAN_REPO/$DRIVER-drivers/$DRIVER-$KERNEL_VERSION-v7-$KERNEL_REV.tar.gz
+#  tar xf $DRIVER-$KERNEL_VERSION-v7-$KERNEL_REV.tar.gz
+#  sed -i 's/^kernel=.*$/kernel='"$KERNEL_VERSION"'-v7+/' install.sh
+#  sh install.sh
+#  rm -rf *
+#
+#  echo "WIFI: $DRIVER for armv6"
+#  wget $MRENGMAN_REPO/$DRIVER-drivers/$DRIVER-$KERNEL_VERSION-$KERNEL_REV.tar.gz
+#  tar xf $DRIVER-$KERNEL_VERSION-$KERNEL_REV.tar.gz
+#  sed -i 's/^kernel=.*$/kernel='"$KERNEL_VERSION"'+/' install.sh
+#  sh install.sh
+#  rm -rf *
+#done
+#
+#cd ..
+#rm -rf wifi
 
 #On The Fly Patch
 if [ "$PATCH" = "volumio" ]; then
@@ -263,6 +248,7 @@ apt-get install -y winbind libnss-winbind
 echo "Finalising drivers installation with depmod on $KERNEL_VERSION+ and $KERNEL_VERSION-v7+"
 depmod $KERNEL_VERSION+
 depmod $KERNEL_VERSION-v7+
+depmod $KERNEL_VERSION-v7l+
 
 echo "Cleaning APT Cache and remove policy file"
 rm -f /var/lib/apt/lists/*archive*
@@ -275,4 +261,4 @@ touch /boot/resize-volumio-datapart
 
 
 echo "Creating initramfs"
-mkinitramfs-custom.sh -o /tmp/initramfs-tmp
+/usr/local/sbin/mkinitramfs-custom.sh -o /tmp/initramfs-tmp

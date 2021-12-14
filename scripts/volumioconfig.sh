@@ -15,6 +15,7 @@ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 export LC_ALL=C LANGUAGE=C LANG=C
 /var/lib/dpkg/info/dash.preinst install
 dpkg --configure -a
+dpkg --configure -a
 
 # Reduce locales to just one beyond C.UTF-8
 echo "Existing locales:"
@@ -147,10 +148,10 @@ echo "Installing custom MPD depending on system architecture"
 echo "Installing MPD for armv7"
 # First we manually install a newer alsa-lib to achieve Direct DSD support
 
-   echo "Installing MPD 20.6 with Direct DSD Support"
-   wget https://github.com/ColquhounAudio/mpd-0.20.20-volumio/releases/download/0.20.20-1/mpd_0.20.20-1-volumio_armhf.deb
-   dpkg -i mpd_0.20.20-1-volumio_armhf.deb
-   rm mpd_0.20.20-1-volumio_armhf.deb
+#   echo "Installing MPD 20.6 with Direct DSD Support"
+#   wget https://github.com/ColquhounAudio/mpd-0.20.20-volumio/releases/download/0.20.20-1/mpd_0.20.20-1-volumio_armhf.deb
+#   dpkg -i mpd_0.20.20-1-volumio_armhf.deb
+#   rm mpd_0.20.20-1-volumio_armhf.deb
 
 
 echo "Installing Snapcast"
@@ -297,7 +298,7 @@ echo "Adding Iptables Service"
 ln -s /lib/systemd/system/iptables.service /etc/systemd/system/multi-user.target.wants/iptables.service
 
 echo "Disabling SSH by default"
-systemctl disable ssh.service
+systemctl enable ssh.service
 echo "Enable Airplay2 by default"
 systemctl enable airplay2.service
 systemctl disable airplay.service
@@ -443,4 +444,6 @@ rm /etc/avahi/services/udisks.service
 
 echo "Setting CPU governor to performance"
 echo 'GOVERNOR="performance"' > /etc/default/cpufrequtils
+
+dpkg --configure -a
 

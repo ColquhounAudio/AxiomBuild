@@ -10,6 +10,7 @@ cp /usr/bin/qemu-arm-static "build/$BUILD/root/usr/bin/"
 cp scripts/volumioconfig.sh "build/$BUILD/root"
 
 mount /dev "build/$BUILD/root/dev" -o bind
+mount /dev/pts "build/$BUILD/root/dev/pts" -o bind
 mount /proc "build/$BUILD/root/proc" -t proc
 mount /sys "build/$BUILD/root/sys" -t sysfs
 
@@ -106,6 +107,8 @@ mkdir -p build/$BUILD/root/etc/ld.so.conf.d/
 echo "/opt/vc/lib" > build/$BUILD/root/etc/ld.so.conf.d/opt.conf
 
 
+cp volumio/usr/bin/* build/$BUILD/root/usr/bin/
+
 echo 'Done Copying Custom Volumio System Files'
 
 chroot "build/$BUILD/root" /bin/bash -x <<'EOF'
@@ -113,6 +116,7 @@ chroot "build/$BUILD/root" /bin/bash -x <<'EOF'
 EOF
 
 echo "Unmounting Temp devices"
+umount -l "build/$BUILD/root/dev/pts"
 umount -l "build/$BUILD/root/dev"
 umount -l "build/$BUILD/root/proc"
 umount -l "build/$BUILD/root/sys"

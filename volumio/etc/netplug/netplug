@@ -15,7 +15,12 @@ eth0)
 	ip addr flush wlan0
 	ifconfig wlan0 up
 	cat /sys/class/net/eth0/address >/tmp/mac
-        systemctl restart airplay
+	if systemctl is-enabled --quiet airplay; then
+                systemctl restart airplay
+        fi
+        if systemctl is-enabled --quiet airplay2; then
+                 systemctl restart airplay2
+        fi
 	#killall dhcpcd
 	systemctl start dhcpcd
 	echo lan >/tmp/networkstatus

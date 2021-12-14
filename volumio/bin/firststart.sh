@@ -32,7 +32,7 @@ echo "127.0.0.1 localhost $NEW_HOSTNAME" > /etc/hosts
 /bin/hostname -F /etc/hostname
 
 echo "Setting up UI settings for V1/V2"
-if [ ! -f /sys/class/gpio/gpio508/value ]
+if [ ! -f /sys/class/gpio/gpio496/value ]
 then
         cp /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json /volumio/http/www/app/themes/axiom/assets/variants/axiom/axiom-settings.json.default
         cp /boot/config.txt /boot/config.txt.default

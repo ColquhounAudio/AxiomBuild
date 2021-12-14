@@ -10,13 +10,13 @@ IMG_FILE="AxiomAirV2-${VERSION}-${BUILDDATE}-pi.img"
 echo "Creating Image Bed"
 echo "Image file: ${IMG_FILE}"
 
-dd if=/dev/zero of=${IMG_FILE} bs=1M count=2800
+dd if=/dev/zero of=${IMG_FILE} bs=1M count=2864
 LOOP_DEV=`sudo losetup -f --show ${IMG_FILE}`
 
 sudo parted -s "${LOOP_DEV}" mklabel msdos
-sudo parted -s "${LOOP_DEV}" mkpart primary fat32 0 64
-sudo parted -s "${LOOP_DEV}" mkpart primary ext3 64 2500
-sudo parted -s "${LOOP_DEV}" mkpart primary ext3 2500 2800
+sudo parted -s "${LOOP_DEV}" mkpart primary fat32 0 128 
+sudo parted -s "${LOOP_DEV}" mkpart primary ext3 128 2564
+sudo parted -s "${LOOP_DEV}" mkpart primary ext3 2564 2864
 sudo parted -s "${LOOP_DEV}" set 1 boot on
 sudo parted -s "${LOOP_DEV}" print
 sudo partprobe "${LOOP_DEV}"
@@ -72,6 +72,7 @@ cp scripts/initramfs/init /mnt/volumio/rootfs/root
 cp scripts/initramfs/mkinitramfs-custom.sh /mnt/volumio/rootfs/usr/local/sbin
 
 mount /dev /mnt/volumio/rootfs/dev -o bind
+mount /dev/pts /mnt/volumio/rootfs/dev/pts -o bind
 mount /proc /mnt/volumio/rootfs/proc -t proc
 mount /sys /mnt/volumio/rootfs/sys -t sysfs
 
@@ -94,6 +95,7 @@ EOF
 echo "Base System Installed"
 rm /mnt/volumio/rootfs/raspberryconfig.sh /mnt/volumio/rootfs/root/init
 echo "Unmounting Temp devices"
+umount -l /mnt/volumio/rootfs/dev/pts
 umount -l /mnt/volumio/rootfs/dev
 umount -l /mnt/volumio/rootfs/proc
 umount -l /mnt/volumio/rootfs/sys
