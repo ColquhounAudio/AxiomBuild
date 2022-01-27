@@ -1,6 +1,6 @@
 #!/bin/sh
 BUILD="arm"
-ARCH="armhf"
+ARCH="arm64"
 
 echo 'Cloning Volumio Node Backend'
 mkdir "build/$BUILD/root/volumio"
@@ -19,7 +19,7 @@ rm -rf build/$BUILD/root/volumio/http/www/.git
 
 # Download node modules
 echo "Installing pre-build node-modules package"
-wget -O build/$BUILD/root/volumio/node_modules.tar.gz https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/node_modules.tar.gz
+wget -O build/$BUILD/root/volumio/node_modules.tar.gz https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/node_modules_pi4.tar.gz
 tar -zxf build/$BUILD/root/volumio/node_modules.tar.gz -C build/$BUILD/root/volumio
 rm -f build/$BUILD/root/volumio/node_modules.tar.gz
 

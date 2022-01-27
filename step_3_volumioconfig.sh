@@ -3,10 +3,10 @@
 #Volumio system Configuration Script
 ##
 BUILD="arm"
-ARCH="armhf"
+ARCH="arm64"
 
 echo "Build for arm/armv7/armv8 platform, copying qemu"
-cp /usr/bin/qemu-arm-static "build/$BUILD/root/usr/bin/"
+cp /usr/bin/qemu-aarch64-static "build/$BUILD/root/usr/bin/"
 cp scripts/volumioconfig.sh "build/$BUILD/root"
 
 mount /dev "build/$BUILD/root/dev" -o bind
@@ -46,7 +46,7 @@ cp volumio/etc/ssh/sshd_config build/$BUILD/root/etc/ssh/sshd_config
 #Avahi
 cp volumio/etc/avahi/services/*.service build/$BUILD/root/etc/avahi/services/
 #Log via JournalD in RAM
-cp volumio/etc/systemd/journald.conf build/$BUILD/root/etc/systemd/journald.conf
+cp -r volumio/etc/systemd build/$BUILD/root/etc/
 #Volumio SystemD Services
 cp -r volumio/lib build/$BUILD/root/
 # Netplug

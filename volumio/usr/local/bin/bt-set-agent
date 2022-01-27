@@ -2,7 +2,7 @@
 
 set prompt "#"
 
-spawn bluetoothctl -a
+spawn bluetoothctl
 expect -re $prompt
 send "power on\r"
 sleep 0.1
