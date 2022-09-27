@@ -131,6 +131,8 @@ chmod 777 build/$BUILD/root/var/run/mpd
 touch build/$BUILD/root/etc/airplayd/airplayname
 chmod 777 build/$BUILD/root/etc/airplayd/airplayname
 
+#Override CPU Governor
+cp volumio/etc/default/cpufrequtils build/$BUILD/root/etc/default/cpufrequtils
 
 BUILDDATE=$(date -I)
 cat version.info >> build/$BUILD/root/etc/os-release

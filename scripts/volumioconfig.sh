@@ -155,14 +155,14 @@ echo "Installing MPD for armv7"
 
 
 echo "Installing Snapcast"
-   wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/snapserver_0.15.0_armhf.deb
-   wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/snapclient_0.15.0_armhf.deb
+   wget https://axiom-air-install-files.s3.amazonaws.com/AxiomAirV2/v1.0/snapserver_0.26.0-1_amd64.deb
+   wget https://axiom-air-install-files.s3.amazonaws.com/AxiomAirV2/v1.0/snapclient_0.26.0-1_amd64.deb
 
-   dpkg -i snapclient_0.15.0_armhf.deb
-   rm snapclient_0.15.0_armhf.deb
+   dpkg -i snapclient_0.26.0-1_amd64.deb
+   rm snapclient_0.26.0-1_amd64.deb
  
-   dpkg -i snapserver_0.15.0_armhf.deb
-   rm snapserver_0.15.0_armhf.deb
+   dpkg -i snapserver_0.26.0-1_amd64.deb
+   rm snapserver_0.26.0-1_amd64.deb
 
    ln -s /usr/bin/snapserver /usr/sbin/snapserver
    ln -s /usr/bin/snapclient /usr/sbin/snapclient
@@ -198,7 +198,7 @@ update-rc.d upmpdcli remove
 
 echo "Volumio Init Updater"
 #  wget http://repo.volumio.org/Volumio2/Binaries/arm/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
-wget https://s3.amazonaws.com/axiom-air-install-files/AxiomAirV2/v1.0/volumio-init-updater-v2 -O /usr/local/sbin/volumio-init-updater
+wget https://axiom-air-install-files.s3.amazonaws.com/AxiomAirV2/v1.0/volumio-init-updater-sh -O /usr/local/sbin/volumio-init-updater
 chmod a+x /usr/local/sbin/volumio-init-updater
 
 #  echo "Zsync"
@@ -319,6 +319,7 @@ systemctl enable mpd.service
 echo "Disable hotspot services at boot"
 systemctl disable hotspot.service
 systemctl disable dnsmasq.service
+systemctl disable hostapd.service
 
 echo "Enable wac services at boot"
 systemctl disable wac.service

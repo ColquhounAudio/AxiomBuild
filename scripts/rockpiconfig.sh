@@ -16,7 +16,7 @@ echo "Creating Fstab File"
 
 touch /etc/fstab
 echo "proc            /proc           proc    defaults        0       0
-/dev/mmcblk1p1  /boot           vfat    defaults,utf8,user,rw,umask=111,dmask=000        0       1
+/dev/mmcblk2p1  /boot           vfat    defaults,utf8,user,rw,umask=111,dmask=000        0       1
 tmpfs   /var/log                tmpfs   size=20M,nodev,uid=1000,mode=0777,gid=4, 0 0
 tmpfs   /var/spool/cups         tmpfs   defaults,noatime,mode=0755 0 0
 tmpfs   /var/spool/cups/tmp     tmpfs   defaults,noatime,mode=0755 0 0
@@ -72,6 +72,18 @@ touch /boot/resize-volumio-datapart
 
 cd /
 tar -zxvf boot.tar.gz
+dpkg -i --force-all /libnpupnp1_4.2.1-2~ppaPPAVERS~SERIES1_arm64.deb
+dpkg -i --force-all /libupnpp6_0.21.0-3~ppaPPAVERS~SERIES1_arm64.deb
+dpkg -i --force-all /upmpdcli_1.5.16-1~ppaPPAVERS~SERIES1_arm64.deb
+dpkg -i --force-all /upmpdcli-spotify_1.5.16-1~ppaPPAVERS~SERIES1_all.deb
+dpkg -i --force-all /upmpdcli-qobuz_1.5.16-1~ppaPPAVERS~SERIES1_all.deb
+dpkg -i --force-all /sc2mpd_1.1.11-1~ppaPPAVERS~SERIES1_arm64.deb
+rm -vf /libnpupnp1_4.2.1-2~ppaPPAVERS~SERIES1_arm64.deb
+rm -vf /libupnpp6_0.21.0-3~ppaPPAVERS~SERIES1_arm64.deb
+rm -vf /upmpdcli_1.5.16-1~ppaPPAVERS~SERIES1_arm64.deb
+rm -vf /upmpdcli-spotify_1.5.16-1~ppaPPAVERS~SERIES1_all.deb
+rm -vf /upmpdcli-qobuz_1.5.16-1~ppaPPAVERS~SERIES1_all.deb
+rm -vf /sc2mpd_1.1.11-1~ppaPPAVERS~SERIES1_arm64.deb
 dpkg -i --force-all /linux-image-current-rockchip64_21.11.0-trunk_arm64.deb
 mv /boot/vmlinuz-5.10.87-rockchip64 /boot/Image
 

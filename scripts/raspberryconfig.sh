@@ -16,7 +16,7 @@ echo "Creating Fstab File"
 
 touch /etc/fstab
 echo "proc            /proc           proc    defaults        0       0
-/dev/mmcblk1p1  /boot           vfat    defaults,utf8,user,rw,umask=111,dmask=000        0       1
+/dev/mmcblk2p1  /boot           vfat    defaults,utf8,user,rw,umask=111,dmask=000        0       1
 tmpfs   /var/log                tmpfs   size=20M,nodev,uid=1000,mode=0777,gid=4, 0 0
 tmpfs   /var/spool/cups         tmpfs   defaults,noatime,mode=0755 0 0
 tmpfs   /var/spool/cups/tmp     tmpfs   defaults,noatime,mode=0755 0 0
@@ -147,7 +147,7 @@ dtoverlay=gpio-ir,gpio_pin=9,gpio_pull=up
 " >> /boot/config.txt
 
 echo "Writing cmdline.txt file"
-echo "dwc_otg.fiq_enable=1 dwc_otg.fiq_fsm_enable=1 dwc_otg.fiq_fsm_mask=0xF dwc_otg.nak_holdoff=1 console=serial0,115200 kgdboc=serial0,115200 console=tty1 imgpart=/dev/mmcblk0p2 imgfile=/volumio_current.sqsh elevator=noop rootwait bootdelay=5 logo.nologo vt.global_cursor_default=0 loglevel=0 net.ifnames=0" >> /boot/cmdline.txt
+echo "dwc_otg.fiq_enable=1 dwc_otg.fiq_fsm_enable=1 dwc_otg.fiq_fsm_mask=0xF dwc_otg.nak_holdoff=1 console=serial0,115200 kgdboc=serial0,115200 console=tty1 imgpart=/dev/mmcblk2p2 imgfile=/volumio_current.sqsh elevator=noop rootwait bootdelay=5 logo.nologo vt.global_cursor_default=0 loglevel=0 net.ifnames=0" >> /boot/cmdline.txt
 
 echo "adding gpio & spi group and permissions"
 groupadd -f --system gpio

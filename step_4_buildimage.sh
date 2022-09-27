@@ -75,7 +75,12 @@ echo "Entering Chroot Environment"
 cp scripts/rockpiconfig.sh /mnt/volumio/rootfs
 cp scripts/boot.tar.gz /mnt/volumio/rootfs
 cp scripts/linux-image-current-rockchip64_21.11.0-trunk_arm64.deb /mnt/volumio/rootfs
-
+cp scripts/libnpupnp1_4.2.1-2~ppaPPAVERS~SERIES1_arm64.deb /mnt/volumio/rootfs
+cp scripts/libupnpp6_0.21.0-3~ppaPPAVERS~SERIES1_arm64.deb /mnt/volumio/rootfs
+cp scripts/sc2mpd_1.1.11-1~ppaPPAVERS~SERIES1_arm64.deb /mnt/volumio/rootfs
+cp scripts/upmpdcli_1.5.16-1~ppaPPAVERS~SERIES1_arm64.deb /mnt/volumio/rootfs
+cp scripts/upmpdcli-qobuz_1.5.16-1~ppaPPAVERS~SERIES1_all.deb /mnt/volumio/rootfs
+cp scripts/upmpdcli-spotify_1.5.16-1~ppaPPAVERS~SERIES1_all.deb /mnt/volumio/rootfs
 
 
 cp scripts/initramfs/init /mnt/volumio/rootfs/root
