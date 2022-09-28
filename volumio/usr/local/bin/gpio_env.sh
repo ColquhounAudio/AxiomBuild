@@ -9,9 +9,9 @@ for i in /sys/class/gpio/gpiochip*; do
 		*"mcp23017"*)
 			echo "Found MCP in $i ($chip_label} with base $chip_base"
 			export PIN_INPUT_SELECT=$(($chip_base + 0))
-			export PIN_VOL_PLUS=$(($chip_base + 1))
+			export PIN_VOL_PLUS=$(($chip_base + 3))
 			export PIN_MUTE=$(($chip_base + 2))
-			export PIN_VOL_MINUS=$(($chip_base + 3))
+			export PIN_VOL_MINUS=$(($chip_base + 1))
 			export PIN_INTERNAL_LED=$(($chip_base + 8))
 			export PIN_ANALOG_LED=$(($chip_base + 9))
 			export PIN_OPTICAL_LED=$(($chip_base + 10))
