@@ -115,6 +115,7 @@ umount -l /mnt/volumio/rootfs/dev
 umount -l /mnt/volumio/rootfs/proc
 umount -l /mnt/volumio/rootfs/sys
 
+cp volumio/lib/systemd/system/upmpdcli.service /mnt/volumio/rootfs/lib/systemd/system/upmpdcli.service
 
 
 echo "Copying Firmwares"

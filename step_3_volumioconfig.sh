@@ -105,7 +105,10 @@ cp -rp volumio/etc/rc.local build/$BUILD/root/etc/
 #Add missing LD 
 mkdir -p build/$BUILD/root/etc/ld.so.conf.d/
 echo "/opt/vc/lib" > build/$BUILD/root/etc/ld.so.conf.d/opt.conf
-
+#upmpdcli redirect stuff
+cp -r volumio/usr/local/etc build/$BUILD/root/usr/local/
+cp volumio/lib/systemd/system/upmpdcli.service build/$BUILD/root/lib/systemd/system/upmpdcli.service
+cp volumio/etc/upmpdcli.conf build/$BUILD/root/etc/
 
 cp volumio/usr/bin/* build/$BUILD/root/usr/bin/
 

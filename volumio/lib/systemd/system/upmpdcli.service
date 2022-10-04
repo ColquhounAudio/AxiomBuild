@@ -4,7 +4,7 @@ After=syslog.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/upmpdcli -c /tmp/upmpdcli.conf
+ExecStart=/usr/bin/upmpdcli -c /tmp/upmpdcli.conf -f %H
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=volumio
