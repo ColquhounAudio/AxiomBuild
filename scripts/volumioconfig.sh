@@ -339,6 +339,10 @@ systemctl enable irexec-devinput
 echo "Roon enabled"
 systemctl enable roonbridge
 
+echo "Tidal Connect enabled"
+systemctl enable tidalconnect
+systemctl enable tidalbridge
+
 echo "Preventing un-needed dhcp servers to start automatically"
 systemctl disable isc-dhcp-server.service
 #systemctl disable dhcpd.service

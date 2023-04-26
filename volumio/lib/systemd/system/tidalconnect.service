@@ -1,0 +1,19 @@
+[Unit]
+Description=Tidal Connect Daemon
+After=syslog.target
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/TidalConnect
+ExecStart=/usr/local/TidalConnect/tidal_connect_application -l 1 --clientid kc1IS1k9vvOv7bvT --tc-certificate-path ./cert.dat -m %H -f %H --playback-device softvolume
+Restart=always
+RestartSec=2
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=volumio
+User=volumio
+Group=volumio
+
+[Install]
+WantedBy=multi-user.target
+

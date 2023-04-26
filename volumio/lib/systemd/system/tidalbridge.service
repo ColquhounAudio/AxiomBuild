@@ -1,0 +1,20 @@
+[Unit]
+Description=Tidal Connect Daemon
+After=syslog.target tidalconnect.service volumio.service
+Requires=tidalconnect.service volumio.service
+
+[Service]
+Type=simple
+WorkingDirectory=/usr/local/TidalConnect
+ExecStart=/usr/local/TidalConnect/volumio_bridge
+Restart=always
+RestartSec=2
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=volumio
+User=volumio
+Group=volumio
+
+[Install]
+WantedBy=multi-user.target
+
